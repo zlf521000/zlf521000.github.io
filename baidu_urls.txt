@@ -1,5 +1,1 @@
 https://javatooffer.uzibird.cn/2024/11/09/HashMap%E5%92%8CHashtable/
-https://javatooffer.uzibird.cn/2024/11/08/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/
-https://javatooffer.uzibird.cn/2024/11/05/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-WeakHashMap/
-https://javatooffer.uzibird.cn/2024/11/04/whale%E6%8E%A8%E8%8D%90/
-https://javatooffer.uzibird.cn/2024/11/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20volatile%20%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8/
