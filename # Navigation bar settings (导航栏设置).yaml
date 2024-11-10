@@ -874,7 +874,7 @@ snackbar:
 ​
 # https://instant.page/
 # prefetch (预加载)
-instantpage: false
+instantpage: true
 ​
 # https://github.com/vinta/pangu.js
 # 在中英文之间添加空格
@@ -885,7 +885,7 @@ pangu:
 # 懒加载 (图片懒加载)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true
   field: site # site/post
   placeholder:
   blur: false

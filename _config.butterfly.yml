@@ -258,7 +258,7 @@ footer:
     since: 2019
   custom_text:
   # Copyright of theme and framework
-  copyright: true
+  copyright: false
 
 # --------------------------------------
 # Aside Settings
@@ -426,6 +426,8 @@ wordcount:
   # Display the total word count of the website in aside's webinfo
   total_wordcount: true
 
+medium_zoom: true
+fancybox: false
 # Busuanzi count for PV / UV in site
 busuanzi:
   site_uv: true
@@ -467,14 +469,16 @@ search:
   placeholder:
 
   # Algolia Search
+  
   algolia_search:
+    enable: true
     # Number of search results per page
     hitsPerPage: 6
 
   # Local Search
   local_search:
     # Preload the search data when the page loads.
-    preload: false
+    preload: true
     # Show top n results per article, show all results by setting to -1
     top_n_per_article: 1
     # Unescape html strings to the readable one.
