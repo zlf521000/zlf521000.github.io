@@ -12,8 +12,10 @@ allow_translation: false
 ## 2024.11月
 ### 01日
 **杭州-** 转正薪资税前21k
-  <img src="/img/24-11-01杭州.jpg" width="256" height="500" alt="图片描述"/>
-
+  <img src="/img/24-11-01杭州.jpg" width="256" height="500"/>
+### 12日
+**北京-** 转正薪资税前22k
+  <img src="/img/24-11-12-北京-22k.jpg" width="500" height="500"/>
 ## 2024.10月
 ### 16日
 **武汉-** 转正薪资税前14.5k
