@@ -38,6 +38,7 @@ allow_translation: false
 **上海-** 转正薪资税前16k
 <img src="/img/24-08-08-上海-16k.jpg" width=800 height=500/>
 ### 12日
+**西安-** 转正薪资9.5k
 <img src="/img/24-08-12-西安-9.5k.jpg" width=256 height=500/>
 ### 22日
 **西安-** 转正薪资税前8.4k
