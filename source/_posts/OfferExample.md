@@ -8,7 +8,7 @@ allow_translation: false
 
 # 截止目前已经斩获的Offer
 微信联系：
-[![添加微信](https://s1.imagehub.cc/images/2024/11/10/32be5f45c45cf77547ca4b1315febf1d.th.jpg)](https://www.imagehub.cc/image/wechatCode.C09gn4)
+[![添加微信](https://s1.imagehub.cc/images/2024/11/14/8d89a045c06bcd516471d082e65b7557.th.jpg)](https://www.imagehub.cc/image/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87%E7%BC%96%E8%BE%91-20241114203416.CnGGD6)
 ## 2024.11月
 ### 01日
 **杭州-** 转正薪资税前21k
