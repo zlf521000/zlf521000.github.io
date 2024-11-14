@@ -5,6 +5,12 @@ tags: Java
 cover: https://s1.imagehub.cc/images/2024/11/14/7bb64efa4ce7e2e20c691396da037439.png
 ---
 在Java的运行时环境中，JVM（Java Virtual Machine）扮演着至关重要的角色。**JVM内存模型**（**Java Memory Model，简称JMM**）规定了线程之间如何共享变量，如何进行内存操作，确保了并发编程的安全性。本文将带你详细解析JVM内存模型的组成结构、运行机制，以及它在Java多线程环境下的应用。
+
+# 推荐正在找工作的朋友们：
+[就业指导](https://github.com/zlf521000/JavaOfferToYou)   或 [面试指导](https://gitee.com/luffy521000/JavaOfferToYou) （不是机构）
+公众号：**Java直达Offer**
+微信：
+[![添加微信](https://s1.imagehub.cc/images/2024/11/10/32be5f45c45cf77547ca4b1315febf1d.th.jpg)](https://www.imagehub.cc/image/wechatCode.C09gn4)
 # 1. JVM内存模型概述
 JVM内存模型定义了Java程序在执行时如何分配和管理内存。JMM的主要目的是屏蔽不同硬件、操作系统的内存访问差异，确保Java程序在各种环境下都能获得一致的执行效果。
 
