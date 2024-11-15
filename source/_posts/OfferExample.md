@@ -13,12 +13,14 @@ allow_translation: false
 # 2024年
 ## 11月
 ### 01日
-**杭州-** 转正薪资税前21k
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">21k</span>
   <img src="/img/24-11-01杭州.jpg" width="256" height="500"/>
+
 ### 12日
-**北京-** 转正薪资税前22k
-  <img src="/img/24-11-12-北京-22k.jpg" width="256" height="500"/>
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">22k</span>
+  <img src="/img/24-11-12-北京-22k.jpg" width="350" height="500"/>
   <img src="/img/24-11-12-北京-聊天.jpg" width="256" height="500"/>
+
 ### 15日
 又双叒叕上岸两位同学
   <img src="/img/24-11-15-1.jpg" width="256" height="500"/>
@@ -26,242 +28,282 @@ allow_translation: false
 
 ## 10月
 ### 16日
-**武汉-** 转正薪资税前14.5k
+**武汉-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14.5k</span>
 <img src="/img/24-10-16武汉.jpg" width=256 height=500/>
+
 ### 23日
-**深圳-** 转正薪资税前22k，试用期全额发放
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">22k</span>，试用期全额发放
 <img src="/img/24-10-23深圳.jpg" width=800 height=500/>
 
 ## 9月
 ### 09日
-**江苏-** 转正薪资税前20.8k
+**江苏-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">20.8k</span>
 <img src="/img/24-09-09-江苏.jpg" width=256 height=500/>
+
 ### 23日
-**北京-** 转正薪资税前21k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">21k</span>
 <img src="/img/24-09-23-北京.jpg" width=256 height=500/>
-**西安-** 实习薪资税前7k
+
+**西安-** 实习薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">7k</span>
 <img src="/img/24-09-23-西安.jpg" width=256 height=500/>
 
 
 ## 8月
 ### 08日
-**上海-** 转正薪资税前16k
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">16k</span>
 <img src="/img/24-08-08-上海-16k.jpg" width=800 height=500/>
+
 ### 12日
-**西安-** 转正薪资9.5k
+**西安-** 转正薪资 <span style="color:red; font-size:16px; font-weight:bold;">9.5k</span>
 <img src="/img/24-08-12-西安-9.5k.jpg" width=256 height=500/>
+
 ### 22日
-**西安-** 转正薪资税前8.4k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.4k</span>
 <img src="/img/24-08-22-西安-8.4k.jpg" width=256 height=500/>
-**杭州-** 转正薪资税前15.8k
+
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">15.8k</span>
 <img src="/img/24-08-22-杭州-15.8k.jpg" width=256 height=500/>
-**西安-** 转正薪资税前9.5k
+
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9.5k</span>
 
 
 
 ## 7月
 ### 03日
-**上海-** 转正薪资税前15k
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">15k</span>
 <img src="/img/24-07-03-上海-15k.jpg" width=256 height=500/>
+
 ### 10日
-**西安-** 转正薪资税前8.8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.8k</span>
 <img src="/img/24-07-10-西安-8.8k.jpg" width=256 height=500/>
+
 ### 16日
-**深圳-** 转正薪资税前9k
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-07-16-深圳9k.jpg" width=800 height=500/>
+
 ### 18日
-**北京-** 转正薪资税前15k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">15k</span>
 <img src="/img/24-07-18-北京-15k.jpg" width=256 height=500/>
+
 ### 22日
-**深圳-** 转正薪资税前14.5k
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14.5k</span>
 <img src="/img/24-07-22-深圳-8.5k-应届.jpg" width=256 height=500/>
+
 ### 24日
-**成都-** 转正薪资税前7k-应届
+**成都-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">7k</span>-应届
 <img src="/img/24-07-24-成都-7k-应届.jpg" width=800 height=500/>
+
 ### 25日
-转正薪资税前18.5k
+转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">18.5k</span>
 <img src="/img/24-07-25-18.5k.jpg" width=256 height=500/>
+
 ### 27日
-**北京-** 转正薪资税前18.5k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">18.5k</span>
 <img src="/img/24-07-27-北京-18.5k.jpg" width=256 height=500/>
+
 ### 29日
-**深圳-** 转正薪资税前14.5k
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14.5k</span>
 <img src="/img/24-07-29-深圳-14.5k.jpg" width=256 height=500/>
-**南通-** 转正薪资税前6k-应届生
+
+**南通-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">6k</span>-应届生
 <img src="/img/24-07-29-南通-6k-应届.jpg" width=256 height=500/>
 
 
 ## 6月
 ### 04日
-**南京-** 转正薪资税前12k
+**南京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">12k</span>
 <img src="/img/24-06-04-南京-12k.jpg" width=800 height=500/>
+
 ### 05日
-**西安-** 上海-双Offer，转正薪资税前9k
+**西安-** 上海-双Offer，转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-06-05-双1.jpg" width=350 height=500/>
 <img src="/img/24-06-05-双2.jpg" width=800 height=500/>
+
 ### 11日
-**武汉-** 转正薪资税前9k
+**武汉-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-06-11-武汉-9k.jpg" width=256 height=500/>
-**深圳-** 转正薪资税前13k
+
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">13k</span>
 <img src="/img/24-06-11-深圳-13k.jpg" width=256 height=500/>
+
 ### 14日
-**北京-** 转正薪资税前12k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">12k</span>
 <img src="/img/24-06-14-北京-12k.jpg" width=256 height=500/>
+
 ### 24日
-**西安-** 转正薪资税前8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/24-06-24-西安-8k.jpg" width=256 height=500/>
 
 
 ## 5月
 ### 07日
-**西安-** 转正薪资税前8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/24-05-07-西安-8k.jpg" width=256 height=500/>
+
 ### 08日
-**杭州-** 转正薪资税前8k
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/24-05-08-杭州-8k.jpg" width=256 height=500/>
+
 ### 15日
-**北京-** 转正薪资税前14k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14k</span>
 <img src="/img/24-05-15-北京-14k.jpg" width=256 height=500/>
+
 ### 20日
-**杭州-** 转正薪资税前9.5k
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9.5k</span>
 <img src="/img/24-05-20-杭州-9.5k.jpg" width=256 height=500/>
+
 ### 22日
-**西安-** 转正薪资税前8.5k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.5k</span>
 <img src="/img/24-05-22-西安-8.5k.jpg" width=256 height=500/>
+
 ### 27日
-**西安-** 转正薪资税前8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/24-05-27-西安-8k.jpg" width=800 height=500/>
+
 ### 31日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-05-31-西安-9k.jpg" width=256 height=500/>
 
 ## 4月
 ### 03日
-**北京-** 转正薪资税前14k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14k</span>
 <img src="/img/24-04-03-北京-14k.jpg" width=500 height=500/>
+
 ### 15日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-04-15-西安-9k-1.jpg" width=256 height=500/>
 <img src="/img/24-04-15-西安-9k-2.jpg" width=256 height=500/>
 <img src="/img/24-04-15-西安-9k-3.jpg" width=256 height=500/>
+
 ### 17日
-**上海-** 转正薪资税前11k
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">11k</span>
 <img src="/img/24-04-17-上海-11k.jpg" width=256 height=500/>
+
 ### 23日
-转正薪资税前16k，9.5k，6-7k
+转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">16k,9.5k，6-7k</span>
 <img src="/img/24-04-23-1.jpg" width=256 height=500/>
 <img src="/img/24-04-23-2.jpg" width=256 height=500/>
 <img src="/img/24-04-23-3.jpg" width=800 height=500/>
+
 ### 30日
-**西安-** 转正薪资税前7-8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">7-8k</span>
 <img src="/img/24-04-30-西安-7-8k.jpg" width=800 height=500/>
 
 ## 3月
 ### 05日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-03-05-西安-9k.jpg" width=800 height=500/>
+
 ### 08日
-**北京-** 转正薪资税前13k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">13k</span>
 <img src="/img/24-03-08-北京-13k.jpg" width=800 height=500/>
+
 ### 11日
-**深圳-** 转正薪资税前12k
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">12k</span>
 <img src="/img/24-03-11-深圳-12k.jpg" width=800 height=500/>
+
 ### 14日
-**上海-** 转正薪资税前10k
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">10k</span>
 <img src="/img/24-03-14-上海-10k.jpg" width=800 height=500/>
+
 ### 20日
-**北京-** 转正薪资税前11k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">11k</span>
 <img src="/img/24-03-20-北京-11k.jpg" width=350 height=500/>
+
 ### 25日
-**深圳-** 转正薪资税前15k
+**深圳-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">15k</span>
 <img src="/img/24-03-25-深圳-15k.jpg" width=800 height=500/>
+
 ### 29日
-**西安-** 转正薪资税前8.5k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.5k</span>
 <img src="/img/24-03-29-西安-8.5k.jpg" width=800 height=500/>
 
 ## 2月 
 ### 23日
-**天津-** 转正薪资税前8.5k
+**天津-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.5k</span>
 <img src="/img/24-02-23-天津-8.5k.jpg" width=350 height=500/>
+
 ### 27日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/24-02-27-西安-9k.jpg" width=800 height=500/>
+
 ### 29日
-**西安-** 转正薪资税前10k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">10k</span>
 <img src="/img/24-02-29-西安-10k.jpg" width=800 height=500/>
 
 # 2023年
 ## 10月
 ### 07日
-**北京-** 转正薪资税前9k
+**北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/23-10-07-北京-9k.jpg" width=256 height=500/>
 
 ### 09日
-**成都-** 转正薪资税前8.5k
+**成都-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8.5k</span>
 <img src="/img/23-10-09-成都-8.5k.jpg" width=256 height=500/>
-**西安-** 双Offer，转正薪资税前8k
+
+**西安-** 双Offer，转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/23-10-09-西安-双Offer-8k.jpg" width=600 height=500/>
 
 ### 12日
-**天津-** 转正薪资税前6.5k
+**天津-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">6.5k</span>
 <img src="/img/23-10-12-天津-6.5k.jpg" width=350 height=500/>
 
 ### 16日
-**苏州-** 转正薪资税前6k
+**苏州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">6k</span>
 <img src="/img/23-10-16-苏州-6k.jpg" width=256 height=500/>
 
 ### 19日
-**南京-** 转正薪资税前9k
+**南京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/23-10-19-南京-9k.jpg" width=800 height=500/>
 
 ### 24日
-**长沙-** 转正薪资税前8k
+**长沙-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/23-10-24-长沙-8k.jpg" width=800 height=500/>
 
 ## 9月
 ### 04日
-**杭州-** 转正薪资税前9k
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/23-09-04-杭州-9k.jpg" width=256 height=500/>
 
 ### 07日
-**兰州-** 转正薪资税前8k
+**兰州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/23-09-07-兰州-8k.jpg" width=800 height=500/>
 
 ### 11日
-**西安-** 转正薪资税前7k+300餐补
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">7k+300餐补</span>
 <img src="/img/23-09-11-西安-7k+300餐补.jpg" width=350 height=500/>
 
 ### 20日
-**杭州-** 转正薪资税前7k
+**杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">7k</span>
 <img src="/img/23-09-20-杭州-7k.jpg" width=350 height=500/>
 
 ### 25日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/23-09-25-西安-9k.jpg" width=350 height=500/>
 
 ### 26日
-**上海-** 转正薪资税前9k+500补贴
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k+500补贴</span>
 <img src="/img/23-09-26-上海-9k+500补贴.jpg" width=350 height=500/>
 
 ## 8月
 ### 10日
-**西安-** 转正薪资税前6k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">6k</span>
 <img src="/img/23-08-10-西安-6k.jpg" width=256 height=500/>
 
 ### 11日
-**西安-** 转正薪资税前15k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">15k</span>
 <img src="/img/23-08-11-西安-15k.jpg" width=350 height=500/>
 
 ### 15日
-**西安-** 转正薪资税前6k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">6k</span>
 <img src="/img/23-08-15-西安-6k.jpg" width=350 height=500/>
 
 ### 25日
-**西安-** 转正薪资税前8k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">8k</span>
 <img src="/img/23-08-25-西安-8k.jpg" width=256 height=500/>
 
 ### 30日
-**西安-** 转正薪资税前9k
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">9k</span>
 <img src="/img/23-08-30-西安-9k.jpg" width=256 height=500/>
 
 
