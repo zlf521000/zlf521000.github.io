@@ -15,7 +15,13 @@ allow_translation: false
   <img src="/img/24-11-01杭州.jpg" width="256" height="500"/>
 ### 12日
 **北京-** 转正薪资税前22k
-  <img src="/img/24-11-12-北京-22k.jpg" width="500" height="500"/>
+  <img src="/img/24-11-12-北京-22k.jpg" width="256" height="500"/>
+  <img src="/img/24-11-12-北京-聊天.jpg" width="256" height="500"/>
+### 15日
+又双叒叕上岸两位同学
+  <img src="/img/24-11-15-1.jpg" width="256" height="500"/>
+  <img src="/img/24-11-15-2.jpg" width="256" height="500"/>
+
 ## 2024.10月
 ### 16日
 **武汉-** 转正薪资税前14.5k
@@ -127,7 +133,34 @@ allow_translation: false
 **西安-** 转正薪资税前9k
 <img src="/img/24-05-31-西安-9k.jpg" width=256 height=500/>
 
+## 2024.4月
+### 03日
+**北京-** 转正薪资税前14k
+<img src="/img/24-04-03-北京-14k.jpg" width=256 height=500/>
+### 15日
+**西安-** 转正薪资税前9k
+<img src="/img/24-04-15-西安-9k-1.jpg" width=256 height=500/>
+<img src="/img/24-04-15-西安-9k-2.jpg" width=256 height=500/>
+<img src="/img/24-04-15-西安-9k-3.jpg" width=256 height=500/>
+### 17日
+**上海-** 转正薪资税前11k
+<img src="/img/24-04-17-上海-11k.jpg" width=256 height=500/>
+### 23日
+转正薪资税前16k，9.5k，6-7k
+<img src="/img/24-04-23-1.jpg" width=256 height=500/>
+<img src="/img/24-04-23-2.jpg" width=256 height=500/>
+<img src="/img/24-04-23-3.jpg" width=256 height=500/>
+### 30日
+**西安-** 转正薪资税前7-8k
+<img src="/img/24-04-30-西安-7-8k.jpg" width=256 height=500/>
 
-
-
-
+## 2024.3月
+### 05日
+**西安-** 转正薪资税前9k
+<img src="/img/24-03-05-西安-9k.jpg" width=256 height=500/>
+### 08日
+**北京-** 转正薪资税前13k
+<img src="/img/24-03-08-北京-13k.jpg" width=256 height=500/>
+### 11日
+**深圳-** 转正薪资税前11k
+<img src="/img/24-03-11-深圳-12k.jpg" width=256 height=500/>
