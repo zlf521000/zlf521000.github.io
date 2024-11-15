@@ -15,7 +15,12 @@ allow_translation: false
   <img src="/img/24-11-01杭州.jpg" width="256" height="500"/>
 ### 12日
 **北京-** 转正薪资税前22k
-  <img src="/img/24-11-12-北京-22k.jpg" width="500" height="500"/>
+  <img src="/img/24-11-12-北京-22k.jpg" width="256" height="500"/>
+  <img src="/img/24-11-12-北京-聊天.jpg" width="256" height="500"/>
+### 15日
+又双叒叕上岸两位同学
+  <img src="/img/24-11-15-1.jpg" width="256" height="500"/>
+<img src="/img/24-11-15-2.jpg" width="256" height="500"/>
 ## 2024.10月
 ### 16日
 **武汉-** 转正薪资税前14.5k
