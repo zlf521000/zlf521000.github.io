@@ -18,13 +18,25 @@ allow_translation: false
 
 ### 12日
 **北京-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">22k</span>
-  <img src="/img/24-11-12-北京-22k.jpg" width="350" height="500"/>
+  <img src="/img/24-11-12-北京-22k.jpg" width="256" height="500"/>
   <img src="/img/24-11-12-北京-聊天.jpg" width="256" height="500"/>
 
 ### 15日
 又双叒叕上岸两位同学
   <img src="/img/24-11-15-1.jpg" width="256" height="500"/>
   <img src="/img/24-11-15-2.jpg" width="256" height="500"/>
+
+### 16日
+**西安-** 测试17k*15薪，一周时间拿下！
+  <img src="/img/24-11-16-西安-17k.jpg" width="400" height="500"/>
+
+### 18日
+**北京-** 校招25届12k+24000年终奖
+  <img src="/img/24-11-18-北京-12k+24000.jpg" width="600" height="500"/>
+  <img src="/img/24-11-18-武汉-21k.jpg" width="600" height="500"/>
+  最近面试和机考的排期实在多
+  忙的都没时间发
+  <img src="/img/24-11-18-面试安排.jpg" width="300" height="400"/>
 
 ## 10月
 ### 16日
