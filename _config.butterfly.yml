@@ -18,13 +18,32 @@ nav:
 
 menu:
    首页: / || fas fa-home
-   #归档：/||fas fa-list:
-    # Music: /music/ || fas fa-music
-    # Movie: /movies/ || fas fa-video
+   面试总结||fas fa-list:
+     Java: /interview-java/ || fab fa-java
+     C++: /interview-c++/ || fas fa-code
+     Python: /interview-python/ || fab fa-python
+     MySQL: /interview-mysql/ || fas fa-database
+     Redis: /interview-redis/ || fas fa-memory
+     Linux: /interview-linux/ || fab fa-linux
+     RabbitMQ: /interview-rabbitMQ/ || fas fa-server
+     Spring: /interview-Spring/ || fas fa-leaf
+     Kafka: /interview-kafka/ || fas fa-stream
+   编程开发||fas fa-book:
+     Java: /Java/ || fab fa-java
+     C++: /C++/ || fas fa-code
+     Python: /Python/ || fab fa-python
+     MySQL: /MySQL/ || fas fa-database
+     Redis: /Redis/ || fas fa-memory
+     Linux: /Linux/ || fab fa-linux
+     RabbitMQ: /RabbitMQ/ || fas fa-server
+     Spring: /Spring/ || fas fa-leaf
+     Kafka: /Kafka/ || fas fa-stream
+
 
 # --------------------------------------
 # Code Blocks Settings
 # --------------------------------------
+
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
@@ -45,9 +64,9 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-   fab fa-github: https://github.com/zlf521000 || Github || '#24292e'
+   fab fa-github: https://github.com/zlf521000/JavaOfferToYou || Github || '#24292e'
    fas fa-envelope: mailto:luffy13453500082@163.com || Email || '#4a7dbe'
-
+   fab fa-weixin: /img/WechatIMG35.jpg || 微信 || '#1AAD19'
 # --------------------------------------
 # Image Settings
 # --------------------------------------
@@ -279,11 +298,17 @@ aside:
   card_author:
     enable: true
     description:
+    # button:
+    #   enable: true
+    #   icon: fab fa-github
+    #   text: 关注我
+    #   link: https://github.com/zlf521000
     button:
       enable: true
-      icon: fab fa-github
-      text: 关注我
-      link: https://github.com/zlf521000
+      icon: fab fa-weixin
+      text: 关注公众号
+      link: /img/公众号.png  # 替换为二维码图片的路径
+
   card_announcement:
     enable: true
     content: 面试指导，100%帮您拿Offer，不拿Offer不收费！！！
@@ -484,6 +509,12 @@ search:
     # Unescape html strings to the readable one.
     unescape: false
     CDN:
+# Local search
+local_search:
+  enable: true
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
 
   # Docsearch
   # https://docsearch.algolia.com/
@@ -652,9 +683,9 @@ chat:
   use:
   # Chat Button [recommend]
   # It will create a button in the bottom right corner of website, and hide the origin button
-  rightside_button: false
+  rightside_button: true
   # The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
-  button_hide_show: false
+  button_hide_show: true
 
 # https://chatra.io/
 chatra:
@@ -1033,6 +1064,7 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
+    - <link rel="stylesheet" href="/css/transpancy.css">
   bottom:
     # - <script src="xxxx"></script>
 

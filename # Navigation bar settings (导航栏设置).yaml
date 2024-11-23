@@ -528,10 +528,10 @@ artalk:
 ​
 # 聊天按钮 [推荐]
 # 它将在网站右下角创建一个按钮，并隐藏原始按钮
-chat_btn: false
+chat_btn: true
 ​
 # 当滚动至上部时显示原始聊天按钮，滚动下来时隐藏按钮
-chat_hide_show: false
+chat_hide_show: true
 ​
 # Chatra
 # https://chatra.io/
