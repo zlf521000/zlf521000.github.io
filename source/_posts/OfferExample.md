@@ -38,6 +38,10 @@ allow_translation: false
   忙的都没时间发
   <img src="/img/24-11-18-面试安排.jpg" width="300" height="400"/>
 
+### 26日
+**上海-** 转正薪资税前<span style="color:red; font-size:16px; font-weight:bold;">13k</span>
+<img src="/img/24-11-26-上海-13k.jpg" width="400" height="500"/>
+
 ## 10月
 ### 16日
 **武汉-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">14.5k</span>
