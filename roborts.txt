@@ -12,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://qqqww.com/sitemap.xml
-Sitemap: http://qqqww.com/baidusitemap.xml
+Sitemap: https://javatooffer.uzibird.cn/sitemap.xml
+Sitemap: https://javatooffer.uzibird.cn/baidusitemap.xml
