@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://javatooffer.uzibird.cn/2024/11/28/Autowird-vs-Resource/</loc>
+    
+    <lastmod>2024-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://javatooffer.uzibird.cn/2024/11/03/OfferExample/</loc>
     
     <lastmod>2024-11-27</lastmod>
@@ -382,7 +391,7 @@
 
   <url>
     <loc>https://javatooffer.uzibird.cn/</loc>
-    <lastmod>2024-11-27</lastmod>
+    <lastmod>2024-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -390,28 +399,28 @@
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Java/</loc>
-    <lastmod>2024-11-27</lastmod>
+    <lastmod>2024-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Offer/</loc>
-    <lastmod>2024-11-27</lastmod>
+    <lastmod>2024-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Telegram-Bot/</loc>
-    <lastmod>2024-11-27</lastmod>
+    <lastmod>2024-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/VPN/</loc>
-    <lastmod>2024-11-27</lastmod>
+    <lastmod>2024-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
