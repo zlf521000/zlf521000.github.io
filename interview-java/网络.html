@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网络 | Java直达Offer</title><meta name="author" content="Luffy"><meta name="copyright" content="Luffy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网络什么是认证和授权？如何设计⼀个权限认证框架？认证： 就是对系统访问者的身份进⾏确认。 授权：就是对系统访问者的⾏为进⾏控制。授权通常是在认证之后，对系统内的⽤户隐私数据进⾏保 护。后台接⼝访问权限、前台控件的访问权限。 RBAC模型：   主体 -&gt; ⻆⾊ -&gt; 资源 -&gt; 访问系统的⾏为。 认证和授权也是对⼀个权限认证框架进⾏扩展的两个主要的⽅⾯。 如果没有Cookie,S">
+<meta property="og:type" content="website">
+<meta property="og:title" content="网络">
+<meta property="og:url" content="https://javatooffer.uzibird.cn/interview-java/%E7%BD%91%E7%BB%9C.html">
+<meta property="og:site_name" content="Java直达Offer">
+<meta property="og:description" content="网络什么是认证和授权？如何设计⼀个权限认证框架？认证： 就是对系统访问者的身份进⾏确认。 授权：就是对系统访问者的⾏为进⾏控制。授权通常是在认证之后，对系统内的⽤户隐私数据进⾏保 护。后台接⼝访问权限、前台控件的访问权限。 RBAC模型：   主体 -&gt; ⻆⾊ -&gt; 资源 -&gt; 访问系统的⾏为。 认证和授权也是对⼀个权限认证框架进⾏扩展的两个主要的⽅⾯。 如果没有Cookie,S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg">
+<meta property="article:published_time" content="2024-11-04T13:08:38.000Z">
+<meta property="article:modified_time" content="2024-12-03T12:45:11.693Z">
+<meta property="article:author" content="Luffy">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg"><link rel="shortcut icon" href="/img/WechatIMG19.jpg"><link rel="canonical" href="https://javatooffer.uzibird.cn/interview-java/%E7%BD%91%E7%BB%9C.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '网络',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-12-03 20:45:11',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/transpancy.css"><meta name="baidu-site-verification" content="codeva-uXoRJ5heZn"><meta name="google-site-verification" content="tCePosOhrelbl19HIoBruBGDrnG9ccrO4IRZnoEgXhc"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/WechatIMG19.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/WechatIMG19.jpg" alt="Logo"><span class="site-name">Java直达Offer</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">网络</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><h2 id="什么是认证和授权？如何设计⼀个权限认证框架？"><a href="#什么是认证和授权？如何设计⼀个权限认证框架？" class="headerlink" title="什么是认证和授权？如何设计⼀个权限认证框架？"></a>什么是认证和授权？如何设计⼀个权限认证框架？</h2><p>认证： 就是对系统访问者的身份进⾏确认。</p>
+<p>授权：就是对系统访问者的⾏为进⾏控制。授权通常是在认证之后，对系统内的⽤户隐私数据进⾏保 护。后台接⼝访问权限、前台控件的访问权限。</p>
+<p>RBAC模型：   主体 -&gt; ⻆⾊ -&gt; 资源 -&gt; 访问系统的⾏为。</p>
+<p>认证和授权也是对⼀个权限认证框架进⾏扩展的两个主要的⽅⾯。</p>
+<h2 id="如果没有Cookie-Session还能进⾏身份验证吗？"><a href="#如果没有Cookie-Session还能进⾏身份验证吗？" class="headerlink" title="如果没有Cookie,Session还能进⾏身份验证吗？"></a>如果没有Cookie,Session还能进⾏身份验证吗？</h2><p>当服务器tomcat第⼀次接收到客户端的请求时，会开辟⼀块独⽴的session空间，建⽴⼀个session对 象，同时会⽣成⼀个session id，通过响应头的⽅式保存到客户端浏览器的cookie当中。以后客户端的 每次请求，都会在请求头部带上这个session id，这样就可以对应上服务端的⼀些会话的相关信息，⽐ 如⽤户的登录状态。</p>
+<p>如果没有客户端的Cookie，Session是⽆法进⾏身份验证的。</p>
+<p>当服务端从单体应⽤升级为分布式之后，cookie+session这种机制要怎么扩展？</p>
+<ol>
+<li>session黏贴： 在负载均衡中，通过⼀个机制保证同⼀个客户端的所有请求都会转发到同⼀个 tomcat实例当中。问题： 当这个tomcat实例出现问题之后，请求就会被转发到其他实例，这时候 ⽤户的session信息就丢了。</li>
+<li>session复制： 当⼀个tomcat实例上保存了session信息后，主动将session 复制到集群中的其他实 例。问题： 复制是需要时间的，在复制过程中，容易产⽣session信息丢失。</li>
+<li>session共享： 就是将服务端的session信息保存到⼀个第三⽅中，⽐如Redis。</li>
+</ol>
+<h2 id="什么是CSRF攻击？如何防⽌？"><a href="#什么是CSRF攻击？如何防⽌？" class="headerlink" title="什么是CSRF攻击？如何防⽌？"></a>什么是CSRF攻击？如何防⽌？</h2><p>CSRF： Cross Site Requst Forgery 跨站请求伪造，⼀个正常的请求会将合法⽤户的session id保存到 浏览器的cookie。这时候，如果⽤户在浏览器中打来另⼀个tab⻚， 那这个tab⻚也是可以获得浏览器的 cookie。⿊客就可以利⽤这个cookie信息进⾏攻击。</p>
+<p>攻击过程：</p>
+<ol>
+<li>某银⾏⽹站A可以以GET请求的⽅式发起转账操作。 <a target="_blank" rel="noopener" href="http://www.xxx.com/transfor.do">www.xxx.com/transfor.do</a>? accountNum&#x3D;100&amp;money&#x3D;1000 accountNum表示⽬标账户。这个请求肯定是需要登录才可以正常访问的。</li>
+<li>攻击者在某个论坛或者⽹站上，上传⼀个图⽚，链接地址是  <a target="_blank" rel="noopener" href="http://www.xxx.com/transfer.do">www.xxx.com/transfer.do</a>? accountNum&#x3D;888&amp;money&#x3D;10000 其中这个accountNum就是攻击者⾃⼰的银⾏账户。</li>
+<li>如果有⼀个⽤户，登录了银⾏⽹站，然后⼜打开浏览器的另⼀个tab⻚，点击了这个图⽚。这时，银⾏就会受理到⼀个带了正确cookie的请求，就会完成转账。⽤户的钱就被盗了。</li>
+</ol>
+<p>CSRF防⽌⽅式：</p>
+<ol>
+<li>尽量使⽤POST请求，限制GET请求。POST请求可以带请求体，攻击者就不容易伪造出请求。</li>
+<li>将cookie设置为HttpOnly :  respose.setHeader(“Set-Cookie”,”cookiename&#x3D;cookievalue;HttpOnly”)。</li>
+<li>增加token；</li>
+<li>在请求中放⼊⼀个攻击者⽆法伪造的信息，并且该信息不存在于cookie当中。这也是Spring  Security框架中采⽤的防范⽅式。</li>
+</ol>
+<h2 id="什么是OAuth2-0协议？有哪⼏种认证⽅式？"><a href="#什么是OAuth2-0协议？有哪⼏种认证⽅式？" class="headerlink" title="什么是OAuth2.0协议？有哪⼏种认证⽅式？"></a>什么是OAuth2.0协议？有哪⼏种认证⽅式？</h2><p>OAuth2.0是⼀个开放标准，允许⽤户授权第三⽅应⽤程序访问他们存储在另外的服务提供者上的信息， ⽽不需要将⽤户名和密码提供给第三⽅应⽤或分享他们数据的所有内容。</p>
+<p>OAuth2.0协议的认证流程，简单理解，就是允许我们将之前的授权和认证过程交给⼀个独⽴的第三⽅进 ⾏担保。</p>
+<p>OAuth2.0协议有四种认证⽅式：</p>
+<ol>
+<li>授权码模式</li>
+<li>简化模式</li>
+<li>密码模式</li>
+<li>客户端模式</li>
+</ol>
+<h2 id="什么是SSO？与OAuth2-0有什么关系？"><a href="#什么是SSO？与OAuth2-0有什么关系？" class="headerlink" title="什么是SSO？与OAuth2.0有什么关系？"></a>什么是SSO？与OAuth2.0有什么关系？</h2><p>OAuth2.0的使⽤场景通常称为联合登录， <strong>⼀处注册，多处使⽤</strong></p>
+<p>SSO Single Sign On 单点登录。  <strong>⼀处登录，多处同时登录</strong></p>
+<p>SSO Single Sign On 单点登录。  ⼀处登录，多处同时登录</p>
+<h2 id="如何设计⼀个开放授权平台？"><a href="#如何设计⼀个开放授权平台？" class="headerlink" title="如何设计⼀个开放授权平台？"></a>如何设计⼀个开放授权平台？</h2><p>开放授权平台也可以按照认证和授权两个⽅向来梳理。</p>
+<ol>
+<li>认证： 就可以按照OAuth2.0协议来规划认证的过程。</li>
+<li>授权：</li>
+</ol>
+<ul>
+<li>⾸先需要待接⼊的第三⽅应⽤在开放授权平台进⾏注册，注册需要提供⼏个必要的信息 clintID,  消息推送地址，密钥(⼀对公私钥，私钥由授权平台⾃⼰保存，公钥分发给第三⽅应⽤)。</li>
+<li>然后，第三⽅应⽤引导客户发起请求时，采⽤公钥进⾏参数加密，授权开放平台使⽤对应的私 钥解密。</li>
+<li>接下来：授权开放平台同步响应第三⽅应⽤的只是消息是否处理成功的结果。⽽真正的业务数 据由授权开放平台异步推动给第三⽅应⽤预留的推送地址。</li>
+</ul>
+<h2 id="epoll和poll的区别"><a href="#epoll和poll的区别" class="headerlink" title="epoll和poll的区别"></a>epoll和poll的区别</h2><ol>
+<li>select模型，使⽤的是数组来存储Socket连接⽂件描述符，容量是固定的，需要通过轮询来判断是 否发⽣了IO事件</li>
+<li>poll模型，使⽤的是链表来存储Socket连接⽂件描述符，容量是不固定的，同样需要通过轮询来判 断是否发⽣了IO事件</li>
+<li>epoll模型，epoll和poll是完全不同的，epoll是⼀种事件通知模型，当发⽣了IO事件时，应⽤程序才 进⾏IO操作，不需要像poll模型那样主动去轮询</li>
+</ol>
+<h2 id="TCP的三次握⼿和四次挥⼿"><a href="#TCP的三次握⼿和四次挥⼿" class="headerlink" title="TCP的三次握⼿和四次挥⼿"></a>TCP的三次握⼿和四次挥⼿</h2><p>TCP协议是7层⽹络协议中的传输层协议，负责数据的可靠传输。</p>
+<p>在建⽴TCP连接时，需要通过三次握⼿来建⽴，过程是：</p>
+<ol>
+<li>客户端向服务端发送⼀个SYN</li>
+<li>服务端接收到SYN后，给客户端发送⼀个SYN_ACK</li>
+<li>客户端接收到SYN_ACK后，再给服务端发送⼀个ACK</li>
+</ol>
+<p>在断开TCP连接时，需要通过四次挥⼿来断开，过程是：</p>
+<ol>
+<li>客户端向服务端发送FIN</li>
+<li>服务端接收FIN后，向客户端发送ACK，表示我接收到了断开连接的请求，客户端你可以不发数据 了，不过服务端这边可能还有数据正在处理</li>
+<li>服务端处理完所有数据后，向客户端发送FIN，表示服务端现在可以断开连接</li>
+<li>客户端收到服务端的FIN，向服务端发送ACK，表示客户端也会断开连接了</li>
+</ol>
+<h2 id="浏览器发出⼀个请求到收到响应经历了哪些步骤？"><a href="#浏览器发出⼀个请求到收到响应经历了哪些步骤？" class="headerlink" title="浏览器发出⼀个请求到收到响应经历了哪些步骤？"></a>浏览器发出⼀个请求到收到响应经历了哪些步骤？</h2><ol>
+<li>浏览器解析用户输入的URL,生成一个HTTP格式的请求</li>
+<li>先根据URL域名从本地hosts.文件查找是否有映射P,如果没有就将域名发送给电脑所配置的DNS进行域名解析，得到P地址</li>
+<li>浏览器通过操作系统将请求通过四层网络协议发送出去</li>
+<li>途中可能会经过各种路由器、交换机，最终到达服务器</li>
+<li>服务器收到请求后，根据请求所指定的端口，将请求传递给绑定了该端口的应用程序，比如8080被tomcat占用了</li>
+<li>tomcat接收到请求数据后，按照http协议的格式进行解析，解析得到所要访问的servlet</li>
+<li>然后servlet来处理这个请求，如果是Spring MVC中的DispatcherServlet,,那么则会找到对应的Controller中的方法，并执行该方法得到结果</li>
+<li>Tomcat得到响应结果后封装成HTTP响应的格式，并再次通过网络发送给浏览器所在的服务器</li>
+<li>浏览器所在的服务器拿到结果后再传递给浏览器，浏览器则负责解析并渲染</li>
+</ol>
+<h2 id="跨域请求是什么？有什么问题？怎么解决？"><a href="#跨域请求是什么？有什么问题？怎么解决？" class="headerlink" title="跨域请求是什么？有什么问题？怎么解决？"></a>跨域请求是什么？有什么问题？怎么解决？</h2><p>跨域是指浏览器在发起⽹络请求时，会检查该请求所对应的协议、域名、端⼝和当前⽹⻚是否⼀致，如 果不⼀致则浏览器会进⾏限制，⽐如在<a target="_blank" rel="noopener" href="http://www.baidu.com的某个网⻚中,如果使用ajax去访问/">www.baidu.com的某个⽹⻚中，如果使⽤ajax去访问</a> <a target="_blank" rel="noopener" href="http://www.jd.com是不行的,但是如果是img、iframe、script等标签的src属性去访问则是可以的,之所以浏/">www.jd.com是不⾏的，但是如果是img、iframe、script等标签的src属性去访问则是可以的，之所以浏</a> 览器要做这层限制，是为了⽤户信息安全。但是如果开发者想要绕过这层限制也是可以的：</p>
+<ol>
+<li>response添加header，⽐如resp.setHeader(“Access-Control-Allow-Origin”, “*”);表示可以访问 所有⽹站，不受是否同源的限制</li>
+<li>jsonp的⽅式，该技术底层就是基于script标签来实现的，因为script标签是可以跨域的</li>
+<li>后台⾃⼰控制，先访问同域名下的接⼝，然后在接⼝中再去使⽤HTTPClient等⼯具去调⽤⽬标接⼝</li>
+<li>⽹关，和第三种⽅式类似，都是交给后台服务来进⾏跨域访问</li>
+</ol>
+<h2 id="零拷⻉是什么"><a href="#零拷⻉是什么" class="headerlink" title="零拷⻉是什么"></a>零拷⻉是什么</h2><p>零拷⻉指的是，应⽤程序在需要把内核中的⼀块区域数据转移到另外⼀块内核区域去时，不需要经过先 复制到⽤户空间，再转移到⽬标内核区域去了，⽽直接实现转移。</p>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/WechatIMG19.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Luffy</div><div class="author-info-description">100%包拿Offer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" href="/img/公众号.png"><i class="fab fa-weixin"></i><span>关注公众号</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zlf521000/JavaOfferToYou" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:luffy13453500082@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/WechatIMG35.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #1AAD19;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">面试指导，100%帮您拿Offer，不拿Offer不收费！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource"><img src="https://s1.imagehub.cc/images/2024/11/28/bab171eb86cb158d84460d755e65e039.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Autowird_vs_Resource"/></a><div class="content"><a class="title" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource">Autowird_vs_Resource</a><time datetime="2024-11-28T11:09:48.000Z" title="发表于 2024-11-28 19:09:48">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）"><img src="https://s1.imagehub.cc/images/2024/11/21/68f645d9cdba8f558c74809fe995a988.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（4）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）">创建群聊客服聊天系统（4）</a><time datetime="2024-11-21T11:32:44.000Z" title="发表于 2024-11-21 19:32:44">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）"><img src="https://s1.imagehub.cc/images/2024/11/21/8ebb58f8f0a0b154cee1325a1f390106.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（3）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）">创建群聊客服聊天系统（3）</a><time datetime="2024-11-21T11:32:39.000Z" title="发表于 2024-11-21 19:32:39">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）"><img src="https://s1.imagehub.cc/images/2024/11/17/b77975b53434e94225b9eb404f9ec652.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（2）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）">如何用TelegramBot创建群聊客服聊天系统（2）</a><time datetime="2024-11-17T14:12:25.000Z" title="发表于 2024-11-17 22:12:25">2024-11-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）"><img src="https://s1.imagehub.cc/images/2024/11/17/ae242d68efc396fe35b4f69496454885.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（1）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）">如何用TelegramBot创建群聊客服聊天系统（1）</a><time datetime="2024-11-17T14:12:17.000Z" title="发表于 2024-11-17 22:12:17">2024-11-17</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Offer/" style="font-size: 1.1em; color: #999">Offer</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/Telegram-Bot/" style="font-size: 1.3em; color: #99a1ac">Telegram_Bot</a> <a href="/tags/VPN/" style="font-size: 1.1em; color: #999">VPN</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">19</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-03T13:00:12.727Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Luffy</div></div></footer><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mysql | Java直达Offer</title><meta name="author" content="Luffy"><meta name="copyright" content="Luffy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Mysql索引的基本原理索引⽤来快速地寻找那些具有特定值的记录。如果没有索引，⼀般来说执⾏查询时遍历整张表。 索引的原理：就是把⽆序的数据变成有序的查询  把创建了索引的列的内容进行排序 对排序结果生成倒排表 在倒排表内容上拼上数据地址链 在查询的时候，先拿到倒排表内容，再取出数据地址链，从而拿到具体数据  Mysql聚簇和⾮聚簇索引的区别都是B+树的数据结构  聚簇索引：将数据存储与索引放到了⼀">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mysql">
+<meta property="og:url" content="https://javatooffer.uzibird.cn/interview-java/mysql.html">
+<meta property="og:site_name" content="Java直达Offer">
+<meta property="og:description" content="Mysql索引的基本原理索引⽤来快速地寻找那些具有特定值的记录。如果没有索引，⼀般来说执⾏查询时遍历整张表。 索引的原理：就是把⽆序的数据变成有序的查询  把创建了索引的列的内容进行排序 对排序结果生成倒排表 在倒排表内容上拼上数据地址链 在查询的时候，先拿到倒排表内容，再取出数据地址链，从而拿到具体数据  Mysql聚簇和⾮聚簇索引的区别都是B+树的数据结构  聚簇索引：将数据存储与索引放到了⼀">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg">
+<meta property="article:published_time" content="2024-11-04T13:08:38.000Z">
+<meta property="article:modified_time" content="2024-12-03T12:46:56.037Z">
+<meta property="article:author" content="Luffy">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg"><link rel="shortcut icon" href="/img/WechatIMG19.jpg"><link rel="canonical" href="https://javatooffer.uzibird.cn/interview-java/mysql.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mysql',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-12-03 20:46:56',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/transpancy.css"><meta name="baidu-site-verification" content="codeva-uXoRJ5heZn"><meta name="google-site-verification" content="tCePosOhrelbl19HIoBruBGDrnG9ccrO4IRZnoEgXhc"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/WechatIMG19.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/WechatIMG19.jpg" alt="Logo"><span class="site-name">Java直达Offer</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">Mysql</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="索引的基本原理"><a href="#索引的基本原理" class="headerlink" title="索引的基本原理"></a>索引的基本原理</h2><p>索引⽤来快速地寻找那些具有特定值的记录。如果没有索引，⼀般来说执⾏查询时遍历整张表。</p>
+<p>索引的原理：就是把⽆序的数据变成有序的查询</p>
+<ol>
+<li>把创建了索引的列的内容进行排序</li>
+<li>对排序结果生成倒排表</li>
+<li>在倒排表内容上拼上数据地址链</li>
+<li>在查询的时候，先拿到倒排表内容，再取出数据地址链，从而拿到具体数据</li>
+</ol>
+<h2 id="Mysql聚簇和⾮聚簇索引的区别"><a href="#Mysql聚簇和⾮聚簇索引的区别" class="headerlink" title="Mysql聚簇和⾮聚簇索引的区别"></a>Mysql聚簇和⾮聚簇索引的区别</h2><p>都是B+树的数据结构</p>
+<ul>
+<li>聚簇索引：将数据存储与索引放到了⼀块、并且是按照⼀定的顺序组织的，找到索引也就找到了数 据，数据的物理存放顺序与索引顺序是⼀致的，即：只要索引是相邻的，那么对应的数据⼀定也是 相邻地存放在磁盘上的 </li>
+<li>⾮聚簇索引：叶⼦节点不存储数据、存储的是数据⾏地址，也就是说根据索引查找到数据⾏的位置 再取磁盘查找数据，这个就有点类似⼀本树的⽬录，⽐如我们要找第三章第⼀节，那我们先在这个 ⽬录⾥⾯找，找到对应的⻚码后再去对应的⻚码看⽂章。</li>
+</ul>
+<p>优势：</p>
+<ol>
+<li>查询通过聚簇索引可以直接获取数据，相⽐⾮聚簇索引需要第⼆次查询（⾮覆盖索引的情况 下）效率要⾼</li>
+<li>聚簇索引对于范围查询的效率很⾼，因为其数据是按照⼤⼩排列的</li>
+<li>聚簇索引适合⽤在排序的场合，⾮聚簇索引不适合</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>维护索引很昂贵，特别是插⼊新⾏或者主键被更新导⾄要分⻚(page split)的时候。建议在⼤量插⼊ 新⾏后，选在负载较低的时间段，通过OPTIMIZE TABLE优化表，因为必须被移动的⾏数据可能造成碎 ⽚。使⽤独享表空间可以弱化碎⽚</li>
+<li>表因为使⽤UUID（随机ID）作为主键，使数据存储稀疏，这就会出现聚簇索引有可能有⽐全表扫⾯ 更慢，所以建议使⽤int的auto_increment作为主键</li>
+<li>如果主键⽐较⼤的话，那辅助索引将会变的更⼤，因为辅助索引的叶⼦存储的是主键值；过⻓的主 键值，会导致⾮叶⼦节点占⽤占⽤更多的物理空间</li>
+</ol>
+<p>InnoDB中⼀定有主键，主键⼀定是聚簇索引，不⼿动设置、则会使⽤unique索引，没有unique索引， 则会使⽤数据库内部的⼀个⾏的隐藏id来当作主键索引。在聚簇索引之上创建的索引称之为辅助索引，辅助索引访问数据总是需要⼆次查找，⾮聚簇索引都是辅助索引，像复合索引、前缀索引、唯⼀索引， 辅助索引叶⼦节点存储的不再是⾏的物理位置，⽽是主键值</p>
+<p>MyISM使⽤的是⾮聚簇索引，没有聚簇索引，⾮聚簇索引的两棵B+树看上去没什么不同，节点的结构完 全⼀致只是存储的内容不同⽽已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。 表数据存储在独⽴的地⽅，这两颗B+树的叶⼦节点都使⽤⼀个地址指向真正的表数据，对于表数据来 说，这两个键没有任何差别。由于索引树是独⽴的，通过辅助键检索⽆需访问主键的索引树。</p>
+<p>如果涉及到⼤数据量的排序、全表扫描、count之类的操作的话，还是MyISAM占优势些，因为索引所占 空间⼩，这些操作是需要在内存中完成的。</p>
+<h2 id="Mysql索引的数据结构，各⾃优劣"><a href="#Mysql索引的数据结构，各⾃优劣" class="headerlink" title="Mysql索引的数据结构，各⾃优劣"></a>Mysql索引的数据结构，各⾃优劣</h2><p>索引的数据结构和具体存储引擎的实现有关，在MySQL中使⽤较多的索引有Hash索引，B+树索引等， InnoDB存储引擎的默认索引实现为：B+树索引。对于哈希索引来说，底层的数据结构就是哈希表，因 此在绝⼤多数需求为单条记录查询的时候，可以选择哈希索引，查询性能最快；其余⼤部分场景，建议 选择BTree索引。</p>
+<p>B+树：B+树是⼀个平衡的多叉树，从根节点到每个叶⼦节点的⾼度差值不超过1，⽽且同层级的节点间 有指针相互链接。在B+树上的常规检索，从根节点到叶⼦节点的搜索效率基本相当，不会出现⼤幅波 动，⽽且基于索引的顺序扫描时，也可以利⽤双向指针快速左右移动，效率⾮常⾼。因此，B+树索引被 ⼴泛应⽤于数据库、⽂件系统等场景。</p>
+<p>哈希索引：哈希索引就是采⽤⼀定的哈希算法，把键值换算成新的哈希值，检索时不需要类似B+树那样 从根节点到叶⼦节点逐级查找，只需⼀次哈希算法即可⽴刻定位到相应的位置，速度⾮常快</p>
+<p>如果是等值查询，那么哈希索引明显有绝对优势，因为只需要经过⼀次算法即可找到相应的键值；前提 是键值都是唯⼀的。如果键值不是唯⼀的，就需要先找到该键所在位置，然后再根据链表往后扫描，直 到找到相应的数据；</p>
+<p>如果是范围查询检索，这时候哈希索引就毫⽆⽤武之地了，因为原先是有序的键值，经过哈希算法后， 有可能变成不连续的了，就没办法再利⽤索引完成范围查询检索；</p>
+<p>哈希索引也没办法利⽤索引完成排序，以及like ‘xxx%’ 这样的部分模糊查询（这种部分模糊查询，其实 本质上也是范围查询）；</p>
+<p>哈希索引也不⽀持多列联合索引的最左匹配规则；</p>
+<p>B+树索引的关键字检索效率⽐较平均，不像B树那样波动幅度⼤，在有⼤量重复键值情况下，哈希索引 的效率也是极低的，因为存在哈希碰撞问题。</p>
+<h2 id="索引设计的原则？"><a href="#索引设计的原则？" class="headerlink" title="索引设计的原则？"></a>索引设计的原则？</h2><p>查询更快、占⽤空间更⼩</p>
+<ol>
+<li>适合索引的列是出现在where子句中的列，或者连接子句中指定的列</li>
+<li>基数较小的表，索引效果较差，没有必要在此列建立索引</li>
+<li>使用短索引，如果对长字符串列进行索引，应该指定一个前缀长度，这样能够节省大量索引空间，如果搜索词超过索引前缀长度，则使用索引排除不匹配的行，然后检查其余行是否可能匹配。</li>
+<li>不要过度索引。索引需要额外的磁盘空间，并降低写操作的性能。在修改表内容的时候，索引会进行更新甚至重构，索引列越多，这个时间就会越长。所以只保持需要的索引有利于查询即可。</li>
+<li>定义有外键的数据列一定要建立索引。</li>
+<li>更新频繁字段不适合创建索！</li>
+<li>若是不能有效区分数据的列不适合做索引列（如性别，男女未知，最多也就三种，区分度实在太低）</li>
+<li>尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(，b)的索引，那么只需要修改原来的索引即可。</li>
+<li>对于那些查询中很少涉及的列，重复值比较多的列不要建立索引。</li>
+<li>对于定义为text、image和bit的数据类型的列不要建立索引。</li>
+</ol>
+<h2 id="InnoDB存储引擎的锁的算法"><a href="#InnoDB存储引擎的锁的算法" class="headerlink" title="InnoDB存储引擎的锁的算法"></a>InnoDB存储引擎的锁的算法</h2><ul>
+<li>Record lock：单个⾏记录上的锁</li>
+<li>Gap lock：间隙锁，锁定⼀个范围，不包括记录本身</li>
+<li>Next-key lock：record+gap 锁定⼀个范围，包含记录本身</li>
+</ul>
+<p>相关知识点：</p>
+<ol>
+<li>innodb对于行的查询使用next-key lock</li>
+<li>Next-locking keying.为了解决Phantom Problem幻读问题</li>
+<li>当查询的索引含有唯一属性时，将next-key lock降级为record key</li>
+<li>Gp锁设计的目的是为了阻止多个事务将记录插入到同一范围内，而这会导致幻读问题的产生</li>
+<li>有两种方式显式关闭gap锁：（除了外键约束和唯一性检查外，其余情况仅使用record lock) A.将事务隔离级别设置为RCB.将参数innodb_locks_unsafe_for_binlog设置为1</li>
+</ol>
+<h2 id="关⼼过业务系统⾥⾯的sql耗时吗？统计过慢查询吗？对慢查询都-怎么优化过？"><a href="#关⼼过业务系统⾥⾯的sql耗时吗？统计过慢查询吗？对慢查询都-怎么优化过？" class="headerlink" title="关⼼过业务系统⾥⾯的sql耗时吗？统计过慢查询吗？对慢查询都 怎么优化过？"></a>关⼼过业务系统⾥⾯的sql耗时吗？统计过慢查询吗？对慢查询都 怎么优化过？</h2><p>在业务系统中，除了使⽤主键进⾏的查询，其他的都会在测试库上测试其耗时，慢查询的统计主要由运 维在做，会定期将业务中的慢查询反馈给我们。</p>
+<p>慢查询的优化⾸先要搞明⽩慢的原因是什么？是查询条件没有命中索引？是load了不需要的数据列？还 是数据量太⼤？</p>
+<p>所以优化也是针对这三个⽅向来的，</p>
+<p>⾸先分析语句，看看是否load了额外的数据，可能是查询了多余的⾏并且抛弃掉了，可能是加载了 许多结果中并不需要的列，对语句进⾏分析以及重写。</p>
+<p>分析语句的执⾏计划，然后获得其使⽤索引的情况，之后修改语句或者修改索引，使得语句可以尽 可能的命中索引。</p>
+<p>如果对语句的优化已经⽆法进⾏，可以考虑表中的数据量是否太⼤，如果是的话可以进⾏横向或者 纵向的分表。</p>
+<h2 id="事务的基本特性和隔离级别"><a href="#事务的基本特性和隔离级别" class="headerlink" title="事务的基本特性和隔离级别"></a>事务的基本特性和隔离级别</h2><p>事务基本特性ACID分别是：</p>
+<p><strong>原⼦性</strong>指的是⼀个事务中的操作要么全部成功，要么全部失败。</p>
+<p><strong>⼀致性</strong>指的是数据库总是从⼀个⼀致性的状态转换到另外⼀个⼀致性的状态。⽐如A转账给B100块钱， 假设A只有90块，⽀付之前我们数据库⾥的数据都是符合约束的,但是如果事务执⾏成功了,我们的数据库 数据就破坏约束了,因此事务不能成功,这⾥我们说事务提供了⼀致性的保证</p>
+<p><strong>隔离性</strong>指的是⼀个事务的修改在最终提交前，对其他事务是不可⻅的。</p>
+<p><strong>持久性</strong>指的是⼀旦事务提交，所做的修改就会永久保存到数据库中。</p>
+<p>隔离性有4个隔离级别，分别是：</p>
+<ul>
+<li>read uncommit  读未提交，可能会读到其他事务未提交的数据，也叫做脏读。 ⽤户本来应该读取到id&#x3D;1的⽤户age应该是10，结果读取到了其他事务还没有提交的事务，结果读 取结果age&#x3D;20，这就是脏读。</li>
+<li>read commit  读已提交，两次读取结果不⼀致，叫做不可重复读。 不可重复读解决了脏读的问题，他只会读取已经提交的事务。 ⽤户开启事务读取id&#x3D;1⽤户，查询到age&#x3D;10，再次读取发现结果&#x3D;20，在同⼀个事务⾥同⼀个查询 读取到不同的结果叫做不可重复读。</li>
+<li>repeatable read  可重复复读，这是mysql的默认级别，就是每次读取结果都⼀样，但是有可能产 ⽣幻读。</li>
+<li>serializable  串⾏，⼀般是不会使⽤的，他会给每⼀⾏读取的数据加锁，会导致⼤量超时和锁竞争 的问题。</li>
+</ul>
+<p>脏读(Drity Read)：某个事务已更新⼀份数据，另⼀个事务在此时读取了同⼀份数据，由于某些原因， 前⼀个RollBack了操作，则后⼀个事务所读取的数据就会是不正确的。</p>
+<p>不可重复读(Non-repeatable read):在⼀个事务的两次查询之中数据不⼀致，这可能是两次查询过程中 间插⼊了⼀个事务更新的原有的数据。</p>
+<p>幻读(Phantom Read):在⼀个事务的两次查询中数据笔数不⼀致，例如有⼀个事务查询了⼏列(Row)数 据，⽽另⼀个事务却在此时插⼊了新的⼏列数据，先前的事务在接下来的查询中，就会发现有⼏列数据 是它先前所没有的。</p>
+<h2 id="ACID靠什么保证的？"><a href="#ACID靠什么保证的？" class="headerlink" title="ACID靠什么保证的？"></a>ACID靠什么保证的？</h2><p>A原⼦性由undo log⽇志保证，它记录了需要回滚的⽇志信息，事务回滚时撤销已经执⾏成功的sql</p>
+<p>C⼀致性由其他三⼤特性保证、程序代码要保证业务上的⼀致性</p>
+<p>I隔离性由MVCC来保证</p>
+<p>D持久性由内存+redo log来保证，mysql修改数据同时在内存和redo log记录这次操作，宕机的时候可 以从redo log恢复</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">InnoDB redo log 写盘，InnoDB 事务进⼊prepare 状态。</span><br><span class="line">如果前⾯ prepare 成功，binlog 写盘，</span><br><span class="line">再继续将事务⽇志持久化到binlog，如果持久化成功，</span><br><span class="line">那么InnoDB 事务则进⼊ commit 状态(在redo log ⾥⾯写⼀个commit 记录)</span><br></pre></td></tr></table></figure>
+
+<p>redolog的刷盘会在系统空闲时进⾏</p>
+<h2 id="什么是MVCC"><a href="#什么是MVCC" class="headerlink" title="什么是MVCC"></a>什么是MVCC</h2><p>多版本并发控制：读取数据时通过⼀种类似快照的⽅式将数据保存下来，这样读锁就和写锁不冲突了， 不同的事务session会看到⾃⼰特定版本的数据，版本链</p>
+<p>MVCC只在 READ COMMITTED 和 REPEATABLE READ 两个隔离级别下⼯作。其他两个隔离级别够 和MVCC不兼容, 因为 READ UNCOMMITTED 总是读取最新的数据⾏, ⽽不是符合当前事务版本的数据 ⾏。⽽ SERIALIZABLE 则会对所有读取的⾏都加锁。</p>
+<p>聚簇索引记录中有两个必要的隐藏列：</p>
+<p><strong>trx_id：</strong>⽤来存储每次对某条聚簇索引记录进⾏修改的时候的事务id。</p>
+<p><strong>roll_pointer：</strong>每次对哪条聚簇索引记录有修改的时候，都会把⽼版本写⼊undo⽇志中。这个 roll_pointer就是存了⼀个指针，它指向这条聚簇索引记录的上⼀个版本的位置，通过它来获得上⼀个版 本的记录信息。(注意插⼊操作的undo⽇志没有这个属性，因为它没有⽼版本)</p>
+<p><strong>已提交读和可重复读的区别就在于它们⽣成ReadView的策略不同。</strong></p>
+<p>开始事务时创建readview，readView维护当前活动的事务id，即未提交的事务id，排序⽣成⼀个数组 访问数据，获取数据中的事务id（获取的是事务id最⼤的记录），对⽐readview：</p>
+<p>如果在readview的左边（⽐readview都⼩），可以访问（在左边意味着该事务已经提交）</p>
+<p>如果在readview的右边（⽐readview都⼤）或者就在readview中，不可以访问，获取roll_pointer，取 上⼀版本重新对⽐（在右边意味着，该事务在readview⽣成之后出现，在readview中意味着该事务还未 提交）</p>
+<p>已提交读隔离级别下的事务在每次查询的开始都会⽣成⼀个独⽴的ReadView,⽽可重复读隔离级别则在 第⼀次读的时候⽣成⼀个ReadView，之后的读都复⽤之前的ReadView。</p>
+<p>这就是Mysql的MVCC,通过版本链，实现多版本，可并发读-写，写-读。通过ReadView⽣成策略的不 同实现不同的隔离级别。</p>
+<h2 id="分表后⾮sharding-key的查询怎么处理，分表后的排序？"><a href="#分表后⾮sharding-key的查询怎么处理，分表后的排序？" class="headerlink" title="分表后⾮sharding_key的查询怎么处理，分表后的排序？"></a>分表后⾮sharding_key的查询怎么处理，分表后的排序？</h2><ol>
+<li>可以做⼀个mapping表，⽐如这时候商家要查询订单列表怎么办呢？不带user_id查询的话你总不能 扫全表吧？所以我们可以做⼀个映射关系表，保存商家和⽤户的关系，查询的时候先通过商家查询 到⽤户列表，再通过user_id去查询。</li>
+<li>宽表，对数据实时性要求不是很⾼的场景，⽐如查询订单列表，可以把订单表同步到离线（实时） 数仓，再基于数仓去做成⼀张宽表，再基于其他如es提供查询服务。</li>
+<li>数据量不是很⼤的话，⽐如后台的⼀些查询之类的，也可以通过多线程扫表，然后再聚合结果的⽅ 式来做。或者异步的形式也是可以的。</li>
+</ol>
+<p>union</p>
+<p>排序字段是唯⼀索引：</p>
+<ul>
+<li>首先第一页的查询：将各表的结果集进行合并，然后再次排序</li>
+<li>第二页及以后的查询，需要传入上一页排序字段的最后一个值，及排序方式。</li>
+<li>根据排序方式，及这个值进行查询。如排序字段date,上一页最后值为3，排序方式降序。查询的时候sql为select … from table where date&lt;3 order by date desc limit 0,10。这样再将几个表的结果合并排序即可。</li>
+</ul>
+<h2 id="Mysql主从同步原理"><a href="#Mysql主从同步原理" class="headerlink" title="Mysql主从同步原理"></a>Mysql主从同步原理</h2><p>mysql主从同步的过程：</p>
+<p>Mysql的主从复制中主要有三个线程： 、 master （ binlog dump thread ）、 slave （ I&#x2F;O thread 、 SQL thread ），Master⼀条线程和Slave中的两条线程。</p>
+<ul>
+<li>主节点binlog,主从复制的基础是主库记录数据库的所有变更记录到binlog。binlog是数据库服务器启动的那一刻起，保存所有修改数据库结构或内容的一个文件。</li>
+<li>主节点log dump线程，当binlog有变动时，log dump线程读取其内容并发送给从节点。</li>
+<li>从节点I&#x2F;O线程接收binlog内容，并将其写入到relay log文件中。</li>
+<li>从节点的SQL线程读取relay log文件内容对数据更新进行重放，最终保证主从数据库的一致性。</li>
+</ul>
+<p>注：主从节点使⽤ binglog ⽂件 + position 偏移量来定位主从同步的位置，从节点会保存其已接收到的 偏移量，如果从节点发⽣宕机重启，则会⾃动从 position 的位置发起同步。</p>
+<p>由于mysql默认的复制⽅式是异步的，主库把⽇志发送给从库后不关⼼从库是否已经处理，这样会产⽣ ⼀个问题就是假设主库挂了，从库处理失败了，这时候从库升为主库后，⽇志就丢失了。由此产⽣两个概念。</p>
+<p><strong>全同步复制</strong></p>
+<p>主库写⼊binlog后强制同步⽇志到从库，所有的从库都执⾏完成后才返回给客户端，但是很显然这个⽅ 式的话性能会受到严重影响。</p>
+<p><strong>半同步复制</strong></p>
+<p>和全同步不同的是，半同步复制的逻辑是这样，从库写⼊⽇志成功后返回ACK确认给主库，主库收到⾄ 少⼀个从库的确认就认为写操作完成。</p>
+<h2 id="简述MyISAM和InnoDB的区别"><a href="#简述MyISAM和InnoDB的区别" class="headerlink" title="简述MyISAM和InnoDB的区别"></a>简述MyISAM和InnoDB的区别</h2><p><strong>MyISAM：</strong></p>
+<ul>
+<li>不支持事务，但是每次查询都是原子的；</li>
+<li>支持表级锁，即每次操作是对整个表加锁；</li>
+<li>存储表的总行数；</li>
+<li>一个MYISAM表有三个文件：索引文件、表结构文件、数据文件；</li>
+<li>采用非聚集索引，索引文件的数据域存储指向数据文件的指针。辅索引与主索引基本一致，但是辅索引不用保证唯一性。</li>
+</ul>
+<p><strong>InnoDb：</strong></p>
+<ul>
+<li>支持ACD的事务，支持事务的四种隔离级别；</li>
+<li>支持行级锁及外键约束：因此可以支持写并发；</li>
+<li>不存储总行数；</li>
+<li>一个noDb引擎存储在一个文件空间（共享表空间，表大小不受操作系统控制，一个表可能分布在多个文件里)，也有可能为多个（设置为独立表空，表大小受操作系统文件大小限制，一般为2G)，受操作系统文件大小的限制；</li>
+<li>主键索引采用聚集索引（索引的数据域存储数据文件本身），辅索引的数据域存储主键的值；因此从辅索引查找数据，需要先通过辅索引找到主键值，再访问辅索引；最好使用自增主键，防止插入数据时，为维持B+树结构，文件的大调整。</li>
+</ul>
+<h2 id="简述Mysql中索引类型及对数据库的性能的影响"><a href="#简述Mysql中索引类型及对数据库的性能的影响" class="headerlink" title="简述Mysql中索引类型及对数据库的性能的影响"></a>简述Mysql中索引类型及对数据库的性能的影响</h2><p>普通索引：允许被索引的数据列包含重复的值。</p>
+<p>唯⼀索引：可以保证数据记录的唯⼀性。</p>
+<p>主键：是⼀种特殊的唯⼀索引，在⼀张表中只能定义⼀个主键索引，主键⽤于唯⼀标识⼀条记录，使⽤ 关键字 PRIMARY KEY 来创建。</p>
+<p>联合索引：索引可以覆盖多个数据列，如像INDEX(columnA, columnB)索引。</p>
+<p>全⽂索引：通过建⽴ 倒排索引,可以极⼤的提升检索效率,解决判断字段是否包含的问题，是⽬前搜索引 擎使⽤的⼀种关键技术。可以通过ALTER TABLE table_name ADD FULLTEXT (column);创建全⽂索 引</p>
+<p>索引可以极⼤的提⾼数据的查询速度。</p>
+<p>通过使⽤索引，可以在查询的过程中，使⽤优化隐藏器，提⾼系统的性能。</p>
+<p>但是会降低插⼊、删除、更新表的速度，因为在执⾏这些写操作时，还要操作索引⽂件</p>
+<p>索引需要占物理空间，除了数据表占数据空间之外，每⼀个索引还要占⼀定的物理空间，如果要建⽴聚 簇索引，那么需要的空间就会更⼤，如果⾮聚集索引很多，⼀旦聚集索引改变，那么所有⾮聚集索引都 会跟着变。</p>
+<h2 id="Explain语句结果中各个字段分表表示什么"><a href="#Explain语句结果中各个字段分表表示什么" class="headerlink" title="Explain语句结果中各个字段分表表示什么"></a>Explain语句结果中各个字段分表表示什么</h2><table>
+<thead>
+<tr>
+<th align="center">列名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">id</td>
+<td align="center">查询语句中每出现⼀个SELECT关键字，MySQL 就会为它分配⼀个唯⼀的id值，某些⼦查询会被 优化为join查询，那么出现的id会⼀样</td>
+</tr>
+<tr>
+<td align="center">select_type</td>
+<td align="center">SELECT关键字对应的那个查询的类型</td>
+</tr>
+<tr>
+<td align="center">table</td>
+<td align="center">表名</td>
+</tr>
+<tr>
+<td align="center">partitions</td>
+<td align="center">匹配的分区信息</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">针对单表的查询⽅式（全表扫描、索引）</td>
+</tr>
+<tr>
+<td align="center">possible_keys</td>
+<td align="center">可能⽤到的索引</td>
+</tr>
+<tr>
+<td align="center">key</td>
+<td align="center">实际上使⽤的索引</td>
+</tr>
+<tr>
+<td align="center">key_len</td>
+<td align="center">实际使⽤到的索引⻓度</td>
+</tr>
+<tr>
+<td align="center">ref</td>
+<td align="center">当使⽤索引列等值查询时，与索引列进⾏等值匹 配的对象信息</td>
+</tr>
+<tr>
+<td align="center">rows</td>
+<td align="center">预估的需要读取的记录条数</td>
+</tr>
+<tr>
+<td align="center">filtered</td>
+<td align="center">某个表经过搜索条件过滤后剩余记录条数的百分 ⽐</td>
+</tr>
+<tr>
+<td align="center">Extra</td>
+<td align="center">⼀些额外的信息，⽐如排序等</td>
+</tr>
+</tbody></table>
+<h2 id="索引覆盖是什么"><a href="#索引覆盖是什么" class="headerlink" title="索引覆盖是什么"></a>索引覆盖是什么</h2><p>索引覆盖就是⼀个SQL在执⾏时，可以利⽤索引来快速查找，并且此SQL所要查询的字段在当前索引对 应的字段中都包含了，那么就表示此SQL⾛完索引后不⽤回表了，所需要的字段都在当前索引的叶⼦节 点上存在，可以直接作为结果返回了</p>
+<h2 id="最左前缀原则是什么"><a href="#最左前缀原则是什么" class="headerlink" title="最左前缀原则是什么"></a>最左前缀原则是什么</h2><p>当⼀个SQL想要利⽤索引是，就⼀定要提供该索引所对应的字段中最左边的字段，也就是排在最前⾯的 字段，⽐如针对a,b,c三个字段建⽴了⼀个联合索引，那么在写⼀个sql时就⼀定要提供a字段的条件，这 样才能⽤到联合索引，这是由于在建⽴a,b,c三个字段的联合索引时，底层的B+树是按照a,b,c三个字段 从左往右去⽐较⼤⼩进⾏排序的，所以如果想要利⽤B+树进⾏快速查找也得符合这个规则</p>
+<h2 id="Innodb是如何实现事务的"><a href="#Innodb是如何实现事务的" class="headerlink" title="Innodb是如何实现事务的"></a>Innodb是如何实现事务的</h2><p>Innodb通过Buffer Pool，LogBuffer，Redo Log，Undo Log来实现事务，以⼀个update语句为例：</p>
+<ol>
+<li>Innodb在收到一个update语句后，会先根据条件找到数据所在的页，并将该页缓存在Buffer Pool中</li>
+<li>执行update语句，修改Buffer Pool中的数据，也就是内存中的数据</li>
+<li>针对update语句生成一个RedoLog:对象，并存入LogBuffert中</li>
+<li>针对update语句生成undolog日志，用于事务回滚</li>
+<li>如果事务提交，那么则把RedoLog对象进行持久化，后续还有其他机制将Buffer Pool中所修改的数据页持久化到磁盘中</li>
+<li>如果事务回滚，则利用undolog日志进行回滚</li>
+</ol>
+<h2 id="B树和B-树的区别，为什么Mysql使⽤B-树"><a href="#B树和B-树的区别，为什么Mysql使⽤B-树" class="headerlink" title="B树和B+树的区别，为什么Mysql使⽤B+树"></a>B树和B+树的区别，为什么Mysql使⽤B+树</h2><p>B树的特点：</p>
+<ol>
+<li>节点排序</li>
+<li>⼀个节点了可以存多个元素，多个元素也排序了</li>
+</ol>
+<p>B+树的特点：</p>
+<ol>
+<li>拥有B树的特点</li>
+<li>叶⼦节点之间有指针</li>
+<li>⾮叶⼦节点上的元素在叶⼦节点上都冗余了，也就是叶⼦节点中存储了所有的元素，并且排好顺序</li>
+</ol>
+<p>Mysql索引使⽤的是B+树，因为索引是⽤来加快查询的，⽽B+树通过对数据进⾏排序所以是可以提⾼查 询速度的，然后通过⼀个节点中可以存储多个元素，从⽽可以使得B+树的⾼度不会太⾼，在Mysql中⼀ 个Innodb⻚就是⼀个B+树节点，⼀个Innodb⻚默认16kb，所以⼀般情况下⼀颗两层的B+树可以存2000 万⾏左右的数据，然后通过利⽤B+树叶⼦节点存储了所有数据并且进⾏了排序，并且叶⼦节点之间有指 针，可以很好的⽀持全表扫描，范围查找等SQL语句。</p>
+<h2 id="Mysql锁有哪些，如何理解"><a href="#Mysql锁有哪些，如何理解" class="headerlink" title="Mysql锁有哪些，如何理解"></a>Mysql锁有哪些，如何理解</h2><p>按锁粒度分类：</p>
+<ol>
+<li>行锁：锁某行数据，锁粒度最小，并发度高</li>
+<li>表锁：锁整张表，锁粒度最大，并发度低</li>
+<li>间隙锁：锁的是一个区间</li>
+</ol>
+<p>还可以分为：</p>
+<ol>
+<li>共享锁：也就是读锁，⼀个事务给某⾏数据加了读锁，其他事务也可以读，但是不能写</li>
+<li>排它锁：也就是写锁，⼀个事务给某⾏数据加了写锁，其他事务不能读，也不能写</li>
+</ol>
+<p>还可以分为：</p>
+<ol>
+<li>乐观锁：并不会真正的去锁某⾏记录，⽽是通过⼀个版本号来实现的</li>
+<li>悲观锁：上⾯所的⾏锁、表锁等都是悲观锁</li>
+</ol>
+<p>在事务的隔离级别实现中，就需要利⽤锁来解决幻读</p>
+<h2 id="Mysql慢查询该如何优化？"><a href="#Mysql慢查询该如何优化？" class="headerlink" title="Mysql慢查询该如何优化？"></a>Mysql慢查询该如何优化？</h2><ol>
+<li>检查是否走了索引，如果没有则优化SQL利用索引</li>
+<li>检查所利用的索引，是否是最优索引</li>
+<li>检查所查字段是否都是必须的，是否查询了过多字段，查出了多余数据</li>
+<li>检查表中数据是否过多，是否应该进行分库分表了</li>
+<li>检查数据库实例所在机器的性能配置，是否太低，是否可以适当增加资源</li>
+</ol>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/WechatIMG19.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Luffy</div><div class="author-info-description">100%包拿Offer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" href="/img/公众号.png"><i class="fab fa-weixin"></i><span>关注公众号</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zlf521000/JavaOfferToYou" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:luffy13453500082@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/WechatIMG35.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #1AAD19;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">面试指导，100%帮您拿Offer，不拿Offer不收费！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource"><img src="https://s1.imagehub.cc/images/2024/11/28/bab171eb86cb158d84460d755e65e039.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Autowird_vs_Resource"/></a><div class="content"><a class="title" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource">Autowird_vs_Resource</a><time datetime="2024-11-28T11:09:48.000Z" title="发表于 2024-11-28 19:09:48">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）"><img src="https://s1.imagehub.cc/images/2024/11/21/68f645d9cdba8f558c74809fe995a988.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（4）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）">创建群聊客服聊天系统（4）</a><time datetime="2024-11-21T11:32:44.000Z" title="发表于 2024-11-21 19:32:44">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）"><img src="https://s1.imagehub.cc/images/2024/11/21/8ebb58f8f0a0b154cee1325a1f390106.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（3）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）">创建群聊客服聊天系统（3）</a><time datetime="2024-11-21T11:32:39.000Z" title="发表于 2024-11-21 19:32:39">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）"><img src="https://s1.imagehub.cc/images/2024/11/17/b77975b53434e94225b9eb404f9ec652.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（2）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）">如何用TelegramBot创建群聊客服聊天系统（2）</a><time datetime="2024-11-17T14:12:25.000Z" title="发表于 2024-11-17 22:12:25">2024-11-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）"><img src="https://s1.imagehub.cc/images/2024/11/17/ae242d68efc396fe35b4f69496454885.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（1）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）">如何用TelegramBot创建群聊客服聊天系统（1）</a><time datetime="2024-11-17T14:12:17.000Z" title="发表于 2024-11-17 22:12:17">2024-11-17</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Offer/" style="font-size: 1.1em; color: #999">Offer</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/Telegram-Bot/" style="font-size: 1.3em; color: #99a1ac">Telegram_Bot</a> <a href="/tags/VPN/" style="font-size: 1.1em; color: #999">VPN</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">19</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-03T13:00:12.727Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Luffy</div></div></footer><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

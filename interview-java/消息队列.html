@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>消息队列 | Java直达Offer</title><meta name="author" content="Luffy"><meta name="copyright" content="Luffy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="消息队列如何进⾏产品选型？ Kafka：  优点： 吞吐量⾮常⼤，性能⾮常好，集群⾼可⽤。  缺点：会丢数据，功能⽐较单⼀。  使⽤场景：⽇志分析、⼤数据采集    RabbitMQ：  优点： 消息可靠性⾼，功能全⾯。  缺点：吞吐量⽐较低，消息积累会严重影响性能。erlang语⾔不好定制。  使⽤场景：⼩规模场景。    RocketMQ：  优点：⾼吞吐、⾼性能、⾼可⽤，功能⾮常全⾯。  缺">
+<meta property="og:type" content="website">
+<meta property="og:title" content="消息队列">
+<meta property="og:url" content="https://javatooffer.uzibird.cn/interview-java/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.html">
+<meta property="og:site_name" content="Java直达Offer">
+<meta property="og:description" content="消息队列如何进⾏产品选型？ Kafka：  优点： 吞吐量⾮常⼤，性能⾮常好，集群⾼可⽤。  缺点：会丢数据，功能⽐较单⼀。  使⽤场景：⽇志分析、⼤数据采集    RabbitMQ：  优点： 消息可靠性⾼，功能全⾯。  缺点：吞吐量⽐较低，消息积累会严重影响性能。erlang语⾔不好定制。  使⽤场景：⼩规模场景。    RocketMQ：  优点：⾼吞吐、⾼性能、⾼可⽤，功能⾮常全⾯。  缺">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg">
+<meta property="article:published_time" content="2024-11-04T13:08:38.000Z">
+<meta property="article:modified_time" content="2024-12-03T12:45:12.963Z">
+<meta property="article:author" content="Luffy">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg"><link rel="shortcut icon" href="/img/WechatIMG19.jpg"><link rel="canonical" href="https://javatooffer.uzibird.cn/interview-java/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '消息队列',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-12-03 20:45:12',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/transpancy.css"><meta name="baidu-site-verification" content="codeva-uXoRJ5heZn"><meta name="google-site-verification" content="tCePosOhrelbl19HIoBruBGDrnG9ccrO4IRZnoEgXhc"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/WechatIMG19.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/WechatIMG19.jpg" alt="Logo"><span class="site-name">Java直达Offer</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">消息队列</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h2 id="如何进⾏产品选型？"><a href="#如何进⾏产品选型？" class="headerlink" title="如何进⾏产品选型？"></a>如何进⾏产品选型？</h2><ul>
+<li><p>Kafka：</p>
+<ul>
+<li><p>优点： 吞吐量⾮常⼤，性能⾮常好，集群⾼可⽤。</p>
+</li>
+<li><p>缺点：会丢数据，功能⽐较单⼀。</p>
+</li>
+<li><p>使⽤场景：⽇志分析、⼤数据采集</p>
+</li>
+</ul>
+</li>
+<li><p>RabbitMQ：</p>
+<ul>
+<li><p>优点： 消息可靠性⾼，功能全⾯。</p>
+</li>
+<li><p>缺点：吞吐量⽐较低，消息积累会严重影响性能。erlang语⾔不好定制。</p>
+</li>
+<li><p>使⽤场景：⼩规模场景。</p>
+</li>
+</ul>
+</li>
+<li><p>RocketMQ：</p>
+<ul>
+<li><p>优点：⾼吞吐、⾼性能、⾼可⽤，功能⾮常全⾯。</p>
+</li>
+<li><p>缺点：开源版功能不如云上商业版。官⽅⽂档和周边⽣态还不够成熟。客户端只⽀持java。</p>
+</li>
+<li><p>使⽤场景：⼏乎是全场景。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="简述RabbitMQ的架构设计"><a href="#简述RabbitMQ的架构设计" class="headerlink" title="简述RabbitMQ的架构设计"></a>简述RabbitMQ的架构设计</h2><p><strong>Broker：</strong>rabbitmq的服务节点</p>
+<p><strong>Queue：</strong>队列，是RabbitMQ的内部对象，⽤于存储消息。RabbitMQ中消息只能存储在队列中。⽣产者 投递消息到队列，消费者从队列中获取消息并消费。多个消费者可以订阅同⼀个队列，这时队列中的消 息会被平均分摊(轮询)给多个消费者进⾏消费，⽽不是每个消费者都收到所有的消息进⾏消费。(注意：RabbitMQ不⽀持队列层⾯的⼴播消费，如果需要⼴播消费，可以采⽤⼀个交换器通过路由Key绑定多个 队列，由多个消费者来订阅这些队列的⽅式。</p>
+<p><strong>Exchange：</strong>交换器。⽣产者将消息发送到Exchange，由交换器将消息路由到⼀个或多个队列中。如果 路由不到，或返回给⽣产者，或直接丢弃，或做其它处理。</p>
+<p><strong>RoutingKey：</strong>路由Key。⽣产者将消息发送给交换器的时候，⼀般会指定⼀个RoutingKey，⽤来指定 这个消息的路由规则。这个路由Key需要与交换器类型和绑定键(BindingKey)联合使⽤才能最终⽣效。 在交换器类型和绑定键固定的情况下，⽣产者可以在发送消息给交换器时通过指定RoutingKey来决定消 息流向哪⾥。</p>
+<p><strong>Binding：</strong>通过绑定将交换器和队列关联起来，在绑定的时候⼀般会指定⼀个绑定键，这样RabbitMQ就 可以指定如何正确的路由到队列了。</p>
+<p>交换器和队列实际上是多对多关系。就像关系数据库中的两张表。他们通过BindingKey做关联(多对多 关系表)。在投递消息时，可以通过Exchange和RoutingKey(对应BindingKey)就可以找到相对应的队 列。</p>
+<p><strong>信道：</strong>信道是建⽴在Connection 之上的虚拟连接。当应⽤程序与Rabbit Broker建⽴TCP连接的时候， 客户端紧接着可以创建⼀个AMQP 信道(Channel) ，每个信道都会被指派⼀个唯⼀的D。RabbitMQ 处 理的每条AMQP 指令都是通过信道完成的。信道就像电缆⾥的光纤束。⼀条电缆内含有许多光纤束，允 许所有的连接通过多条光线束进⾏传输和接收。</p>
+<h2 id="RabbitMQ如何确保消息发送-？-消息接收？"><a href="#RabbitMQ如何确保消息发送-？-消息接收？" class="headerlink" title="RabbitMQ如何确保消息发送 ？ 消息接收？"></a>RabbitMQ如何确保消息发送 ？ 消息接收？</h2><p>发送⽅确认机制：信道需要设置为 confirm 模式，则所有在信道上发布的消息都会分配⼀个唯⼀ ID。 ⼀旦消息被投递到queue（可持久化的消息需要写⼊磁盘），信道会发送⼀个确认给⽣产者（包含消息 唯⼀ ID）。如果 RabbitMQ 发⽣内部错误从⽽导致消息丢失，会发送⼀条 nack（未确认）消息给⽣产 者。所有被发送的消息都将被 confirm（即 ack） 或者被nack⼀次。但是没有对消息被 confirm 的快 慢做任何保证，并且同⼀条消息不会既被 confirm⼜被nack 发送⽅确认模式是异步的，⽣产者应⽤程序 在等待确认的同时，可以继续发送消息。当确认消息到达⽣产者，⽣产者的回调⽅法会被触发。</p>
+<p>ConfirmCallback接⼝：只确认是否正确到达 Exchange 中，成功到达则回调</p>
+<p>ReturnCallback接⼝：消息失败返回时回调</p>
+<p>接收⽅确认机制：消费者在声明队列时，可以指定noAck参数，当noAck&#x3D;false时，RabbitMQ会等待消 费者显式发回ack信号后才从内存(或者磁盘，持久化消息)中移去消息。否则，消息被消费后会被⽴即删 除。</p>
+<p>消费者接收每⼀条消息后都必须进⾏确认（消息接收和消息确认是两个不同操作）。只有消费者确认了 消息，RabbitMQ 才能安全地把消息从队列中删除。</p>
+<p>RabbitMQ不会为未ack的消息设置超时时间，它判断此消息是否需要重新投递给消费者的唯⼀依据是消 费该消息的消费者连接是否已经断开。这么设计的原因是RabbitMQ允许消费者消费⼀条消息的时间可 以很⻓。保证数据的最终⼀致性；</p>
+<p>如果消费者返回ack之前断开了链接，RabbitMQ 会重新分发给下⼀个订阅的消费者。（可能存在消息 重复消费的隐患，需要去重）</p>
+<h2 id="RabbitMQ事务消息"><a href="#RabbitMQ事务消息" class="headerlink" title="RabbitMQ事务消息"></a>RabbitMQ事务消息</h2><p>通过对信道的设置实现</p>
+<ol>
+<li>channel.txSelect()；通知服务器开启事务模式；服务端会返回Tx.Select-Ok</li>
+<li>channel.basicPublish；发送消息，可以是多条，可以是消费消息提交ack</li>
+<li>channel.txCommit()提交事务；</li>
+<li>channel.txRollback()回滚事务；</li>
+</ol>
+<p>消费者使⽤事务：</p>
+<ol>
+<li>autoAck&#x3D;false，⼿动提交ack，以事务提交或回滚为准；</li>
+<li>autoAck&#x3D;true，不⽀持事务的，也就是说你即使在收到消息之后在回滚事务也是于事⽆补的，队列 已经把消息移除了</li>
+</ol>
+<p>如果其中任意⼀个环节出现问题，就会抛出IoException异常，⽤户可以拦截异常进⾏事务回滚，或决定 要不要重复消息。</p>
+<p>事务消息会降低rabbitmq的性能</p>
+<h2 id="RabbitMQ死信队列、延时队列"><a href="#RabbitMQ死信队列、延时队列" class="headerlink" title="RabbitMQ死信队列、延时队列"></a>RabbitMQ死信队列、延时队列</h2><ol>
+<li>消息被消费⽅否定确认，使⽤  channel.basicNack 或  channel.basicReject ，并且此时 requeue 属性被设置为 false  。</li>
+<li>消息在队列的存活时间超过设置的TTL时间。</li>
+<li>消息队列的消息数量已经超过最⼤队列⻓度。</li>
+</ol>
+<p>那么该消息将成为“死信”。“死信”消息会被RabbitMQ进⾏特殊处理，如果配置了死信队列信息，那么 该消息将会被丢进死信队列中，如果没有配置，则该消息将会被丢弃</p>
+<p>为每个需要使⽤死信的业务队列配置⼀个死信交换机，这⾥同⼀个项⽬的死信交换机可以共⽤⼀个，然 后为每个业务队列分配⼀个单独的路由key，死信队列只不过是绑定在死信交换机上的队列，死信交换 机也不是什么特殊的交换机，只不过是⽤来接受死信的交换机，所以可以为任何类型【Direct、 Fanout、Topic】</p>
+<p>TTL：⼀条消息或者该队列中的所有消息的最⼤存活时间</p>
+<p>如果⼀条消息设置了TTL属性或者进⼊了设置TTL属性的队列，那么这条消息如果在TTL设置的时间内 没有被消费，则会成为“死信”。如果同时配置了队列的TTL和消息的TTL，那么较⼩的那个值将会被使 ⽤。</p>
+<p>只需要消费者⼀直消费死信队列⾥的消息</p>
+<h2 id="RabbitMQ镜像队列机制"><a href="#RabbitMQ镜像队列机制" class="headerlink" title="RabbitMQ镜像队列机制"></a>RabbitMQ镜像队列机制</h2><p>镜像queue有master节点和slave节点。master和slave是针对⼀个queue⽽⾔的，⽽不是⼀个node作为 所有queue的master，其它node作为slave。⼀个queue第⼀次创建的node为它的master节点，其它 node为slave节点。</p>
+<p>⽆论客户端的请求打到master还是slave最终数据都是从master节点获取。当请求打到master节点时， master节点直接将消息返回给client，同时master节点会通过GM（Guaranteed Multicast）协议将 queue的最新状态⼴播到slave节点。GM保证了⼴播消息的原⼦性，即要么都更新要么都不更新。</p>
+<p>当请求打到slave节点时，slave节点需要将请求先重定向到master节点，master节点将将消息返回给 client，同时master节点会通过GM协议将queue的最新状态⼴播到slave节点。</p>
+<p>如果有新节点加⼊，RabbitMQ不会同步之前的历史数据，新节点只会复制该节点加⼊到集群之后新增 的消息。</p>
+<h2 id="Kafka是什么"><a href="#Kafka是什么" class="headerlink" title="Kafka是什么"></a>Kafka是什么</h2><p>Kafka 是⼀种⾼吞吐量、分布式、基于发布&#x2F;订阅的消息系统，最初由 LinkedIn 公司开发，使⽤Scala  语⾔编写，⽬前是 Apache 的开源项⽬。broker：Kafka 服务器，负责消息存储和转发topic：消息类 别， Kafka 按照 topic 来分类消息partition：topic 的分区，⼀个 topic 可以包含多个 partition，  topic 消息保存在各个partition 上offset：消息在⽇志中的位置，可以理解是消息在 partition 上的偏移 量，也是代表该消息的唯⼀序号Producer：消息⽣产者Consumer：消息消费者Consumer Group：消 费者分组，每个 Consumer 必须属于⼀个 groupZookeeper：保存着集群 broker、 topic、 partition  等 meta 数据；另外，还负责 broker 故障发现， partition leader 选举，负载均衡等功能</p>
+<h2 id="Kafka为什么吞吐量⾼"><a href="#Kafka为什么吞吐量⾼" class="headerlink" title="Kafka为什么吞吐量⾼"></a>Kafka为什么吞吐量⾼</h2><p>Kafka的⽣产者采⽤的是异步发送消息机制，当发送⼀条消息时，消息并没有发送到Broker⽽是缓存起 来，然后直接向业务返回成功，当缓存的消息达到⼀定数量时再批量发送给Broker。这种做法减少了⽹络io，从⽽提⾼了消息发送的吞吐量，但是如果消息⽣产者宕机，会导致消息丢失，业务出错，所以理 论上kafka利⽤此机制提⾼了性能却降低了可靠性。</p>
+<h2 id="Kafka的Pull和Push分别有什么优缺点"><a href="#Kafka的Pull和Push分别有什么优缺点" class="headerlink" title="Kafka的Pull和Push分别有什么优缺点"></a>Kafka的Pull和Push分别有什么优缺点</h2><ol>
+<li>pull表示消费者主动拉取，可以批量拉取，也可以单条拉取，所以pull可以由消费者⾃⼰控制，根据 ⾃⼰的消息处理能⼒来进⾏控制，但是消费者不能及时知道是否有消息，可能会拉到的消息为空</li>
+<li>push表示Broker主动给消费者推送消息，所以肯定是有消息时才会推送，但是消费者不能按⾃⼰的 能⼒来消费消息，推过来多少消息，消费者就得消费多少消息，所以可能会造成⽹络堵塞，消费者 压⼒⼤等问题</li>
+</ol>
+<h2 id="为什么要使⽤-kafka，为什么要使⽤消息队列"><a href="#为什么要使⽤-kafka，为什么要使⽤消息队列" class="headerlink" title="为什么要使⽤ kafka，为什么要使⽤消息队列?"></a>为什么要使⽤ kafka，为什么要使⽤消息队列?</h2><p><strong>缓冲和削峰 ：</strong>上游数据时有突发流量，下游可能扛不住，或者下游没有⾜够多的机器来保证冗余， kafka在中间可以起到⼀个缓冲的作⽤，把消息暂存在kafka中，下游服务就可以按照⾃⼰的节奏进⾏慢慢处理。</p>
+<p><strong>解耦和扩展性 ：</strong>项⽬开始的时候，并不能确定具体需求。消息队列可以作为⼀个接⼝层，解耦重要的业 务流程。只需要遵守约定，针对数据编程即可获取扩展能⼒。冗余 ：可以采⽤⼀对多的⽅式，⼀个⽣产 者发布消息，可以被多个订阅topic的服务消费到，供多个毫⽆关联的业务使⽤。健壮性 ：消息队列可 以堆积请求，所以消费端业务即使短时间死掉，也不会影响主要业务的正常进⾏。异步通信 ：很多时 候，⽤户不想也不需要⽴即处理消息。消息队列提供了异步处理机制，允许⽤户把⼀个消息放⼊队列， 但并不⽴即处理它。想向队列中放⼊多少消息就放多少，然后在需要的时候再去处理它们。</p>
+<h2 id="Kafka中的ISR、AR⼜代表什么？ISR的伸缩⼜指什么"><a href="#Kafka中的ISR、AR⼜代表什么？ISR的伸缩⼜指什么" class="headerlink" title="Kafka中的ISR、AR⼜代表什么？ISR的伸缩⼜指什么"></a>Kafka中的ISR、AR⼜代表什么？ISR的伸缩⼜指什么</h2><p>ISR:In-Sync Replicas 副本同步队列</p>
+<p>AR:Assigned Replicas 所有副本ISR是由leader维护，follower从leader同步数据有⼀些延迟（包括延 迟时间replica.lag.time.max.ms和延迟条数replica.lag.max.messages两个维度, 当前最新的版本0.10.x 中只⽀持replica.lag.time.max.ms这个维度），任意⼀个超过阈值都会把follower剔除出ISR, 存⼊ OSR（Outof-Sync Replicas）列表，新加⼊的follower也会先存放在OSR中。AR&#x3D;ISR+OSR。</p>
+<h2 id="Kafka⾼效⽂件存储设计特点："><a href="#Kafka⾼效⽂件存储设计特点：" class="headerlink" title="Kafka⾼效⽂件存储设计特点："></a>Kafka⾼效⽂件存储设计特点：</h2><ol>
+<li>Kafka 把 topic 中⼀个 parition ⼤⽂件分成多个⼩⽂件段，通过多个⼩⽂件段，就容易定期清除或 删除已经消费完⽂件，减少磁盘占⽤。</li>
+<li>通过索引信息可以快速定位 message 和确定 response 的最⼤⼤⼩。</li>
+<li>通过 index 元数据全部映射到 memory，可以避免 segment file 的 IO 磁盘操作。</li>
+<li>通过索引⽂件稀疏存储，可以⼤幅降低 index ⽂件元数据占⽤空间⼤⼩。</li>
+</ol>
+<h2 id="Kafka与传统消息系统之间有三个关键区别"><a href="#Kafka与传统消息系统之间有三个关键区别" class="headerlink" title="Kafka与传统消息系统之间有三个关键区别"></a>Kafka与传统消息系统之间有三个关键区别</h2><ol>
+<li>Kafka 持久化⽇志，这些⽇志可以被重复读取和⽆限期保留</li>
+<li>Kafka 是⼀个分布式系统：它以集群的⽅式运⾏，可以灵活伸缩，在内部通过复制数据提升容错能 ⼒和⾼可⽤性</li>
+<li>Kafka ⽀持实时的流式处理</li>
+</ol>
+<h2 id="Kafka创建-Topic-时如何将分区放置到不同的-Broker-中"><a href="#Kafka创建-Topic-时如何将分区放置到不同的-Broker-中" class="headerlink" title="Kafka创建 Topic 时如何将分区放置到不同的 Broker 中"></a>Kafka创建 Topic 时如何将分区放置到不同的 Broker 中</h2><ol>
+<li>副本因⼦不能⼤于 Broker 的个数；</li>
+<li>第⼀个分区（编号为 0）的第⼀个副本放置位置是随机从 brokerList 选择的；</li>
+<li>其他分区的第⼀个副本放置位置相对于第 0 个分区依次往后移。也就是如果我们有 5 个Broker，  5 个分区，假设第⼀个分区放在第四个 Broker 上，那么第⼆个分区将会放在第五个 Broker 上；第 三个分区将会放在第⼀个 Broker 上；第四个分区将会放在第⼆个Broker 上，依次类推；</li>
+<li>剩余的副本相对于第⼀个副本放置位置其实是由 nextReplicaShift 决定的，⽽这个数也是随机产⽣ 的</li>
+</ol>
+<h2 id="Kafka的消费者如何消费数据"><a href="#Kafka的消费者如何消费数据" class="headerlink" title="Kafka的消费者如何消费数据"></a>Kafka的消费者如何消费数据</h2><p>消费者每次消费数据的时候，消费者都会记录消费的物理偏移量（ offset）的位置等到下次消费时，他 会接着上次位置继续消费</p>
+<h2 id="Kafka消费者负载均衡策略"><a href="#Kafka消费者负载均衡策略" class="headerlink" title="Kafka消费者负载均衡策略"></a>Kafka消费者负载均衡策略</h2><p>⼀个消费者组中的⼀个分⽚对应⼀个消费者成员，他能保证每个消费者成员都能访问，如果组中成员太 多会有空闲的成员</p>
+<h2 id="kafaka⽣产数据时数据的分组策略"><a href="#kafaka⽣产数据时数据的分组策略" class="headerlink" title="kafaka⽣产数据时数据的分组策略"></a>kafaka⽣产数据时数据的分组策略</h2><p>⽣产者决定数据产⽣到集群的哪个 partition 中每⼀条消息都是以（ key， value）格式 Key是由⽣产者 发送数据传⼊所以⽣产者（ key）决定了数据产⽣到集群的哪个 partition</p>
+<h2 id="Kafka中是怎么体现消息顺序性的？"><a href="#Kafka中是怎么体现消息顺序性的？" class="headerlink" title="Kafka中是怎么体现消息顺序性的？"></a>Kafka中是怎么体现消息顺序性的？</h2><p>kafka每个partition中的消息在写⼊时都是有序的，消费时，每个partition只能被每⼀个group中的⼀个 消费者消费，保证了消费时也是有序的。整个topic不保证有序。如果为了保证topic整个有序，那么将 partition调整为1.</p>
+<h2 id="Kafka如何实现延迟队列？"><a href="#Kafka如何实现延迟队列？" class="headerlink" title="Kafka如何实现延迟队列？"></a>Kafka如何实现延迟队列？</h2><p>Kafka并没有使⽤JDK⾃带的Timer或者DelayQueue来实现延迟的功能，⽽是基于时间轮⾃定义了⼀个 ⽤于实现延迟功能的定时器（SystemTimer）。JDK的Timer和DelayQueue插⼊和删除操作的平均时间 复杂度为O(nlog(n))，并不能满⾜Kafka的⾼性能要求，⽽基于时间轮可以将插⼊和删除操作的时间复杂度都降为O(1)。时间轮的应⽤并⾮Kafka独有，其应⽤场景还有很多，在Netty、Akka、Quartz、 Zookeeper等组件中都存在时间轮的踪影。底层使⽤数组实现，数组中的每个元素可以存放⼀个 TimerTaskList对象。TimerTaskList是⼀个环形双向链表，在其中的链表项TimerTaskEntry中封装了 真正的定时任务TimerTask.Kafka中到底是怎么推进时间的呢？Kafka中的定时器借助了JDK中的 DelayQueue来协助推进时间轮。具体做法是对于每个使⽤到的TimerTaskList都会加⼊到DelayQueue 中。Kafka中的TimingWheel专⻔⽤来执⾏插⼊和删除TimerTaskEntry的操作，⽽DelayQueue专⻔负 责时间推进的任务。再试想⼀下，DelayQueue中的第⼀个超时任务列表的expiration为200ms，第⼆个 超时任务为840ms，这⾥获取DelayQueue的队头只需要O(1)的时间复杂度。如果采⽤每秒定时推进， 那么获取到第⼀个超时的任务列表时执⾏的200次推进中有199次属于“空推进”，⽽获取到第⼆个超时 任务时有需要执⾏639次“空推进”，这样会⽆故空耗机器的性能资源，这⾥采⽤DelayQueue来辅助以少 量空间换时间，从⽽做到了“精准推进”。Kafka中的定时器真可谓是“知⼈善⽤”，⽤TimingWheel做最 擅⻓的任务添加和删除操作，⽽⽤DelayQueue做最擅⻓的时间推进⼯作，相辅相成。</p>
+<h2 id="RocketMQ的事务消息是如何实现的"><a href="#RocketMQ的事务消息是如何实现的" class="headerlink" title="RocketMQ的事务消息是如何实现的"></a>RocketMQ的事务消息是如何实现的</h2><p><img src="/%5Cimg%5Cjava%5Cimage-20241203155652828.png" alt="image-20241203155652828"></p>
+<ol>
+<li>生产者将消息发送至Apache RocketMQ服务端。</li>
+<li>Apache RocketMQ服务端将消息持久化成功之后，向生产者返回Ack确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为半事务消息。</li>
+<li>生产者开始执行本地事务逻辑。</li>
+<li>生产者根据本地事务执行结果向服务端提交二次确认结果（Commit或是Rollback），服务端收到确认结果后处理逻辑如下：<ul>
+<li>二次确认结果为Commit：服务端将半事务消息标记为可投递，并投递给消费者。</li>
+<li>二次确认结果为Rollback：服务端将回滚事务，不会将半事务消息投递给消费者。</li>
+</ul>
+</li>
+<li>在断网或者是生产者应用重启的特殊情况下，若服务端未收到发送者提交的二次确认结果，或服务端收到的二次确认结果为Unknown未知状态，经过固定时间后，服务端将对消息生产者即生产者集群中任一生产者实例发起消息回查。 <strong>说明</strong> 服务端回查的间隔时间和最大回查次数，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/03limits">参数限制</a>。</li>
+<li>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</li>
+<li>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</li>
+</ol>
+<h2 id="为什么RocketMQ不使⽤Zookeeper作为注册中⼼呢？"><a href="#为什么RocketMQ不使⽤Zookeeper作为注册中⼼呢？" class="headerlink" title="为什么RocketMQ不使⽤Zookeeper作为注册中⼼呢？"></a>为什么RocketMQ不使⽤Zookeeper作为注册中⼼呢？</h2><p>根据CAP理论，同时最多只能满⾜两个点，⽽zookeeper满⾜的是CP，也就是说zookeeper并不能保证 服务的可⽤性，zookeeper在进⾏选举的时候，整个选举的时间太⻓，期间整个集群都处于不可⽤的状 态，⽽这对于⼀个注册中⼼来说肯定是不能接受的，作为服务发现来说就应该是为可⽤性⽽设计。</p>
+<p>基于性能的考虑，NameServer本身的实现⾮常轻量，⽽且可以通过增加机器的⽅式⽔平扩展，增加集 群的抗压能⼒，⽽zookeeper的写是不可扩展的，⽽zookeeper要解决这个问题只能通过划分领域，划 分多个zookeeper集群来解决，⾸先操作起来太复杂，其次这样还是⼜违反了CAP中的A的设计，导致 服务之间是不连通的。</p>
+<p>持久化的机制来带的问题，ZooKeeper 的 ZAB 协议对每⼀个写请求，会在每个 ZooKeeper 节点上保 持写⼀个事务⽇志，同时再加上定期的将内存数据镜像（Snapshot）到磁盘来保证数据的⼀致性和持久 性，⽽对于⼀个简单的服务发现的场景来说，这其实没有太⼤的必要，这个实现⽅案太重了。⽽且本身 存储的数据应该是⾼度定制化的。</p>
+<p>消息发送应该弱依赖注册中⼼，⽽RocketMQ的设计理念也正是基于此，⽣产者在第⼀次发送消息的时 候从NameServer获取到Broker地址后缓存到本地，如果NameServer整个集群不可⽤，短时间内对于⽣ 产者和消费者并不会产⽣太⼤影响。</p>
+<h2 id="RocketMQ的实现原理"><a href="#RocketMQ的实现原理" class="headerlink" title="RocketMQ的实现原理"></a>RocketMQ的实现原理</h2><p>RocketMQ由NameServer注册中⼼集群、Producer⽣产者集群、Consumer消费者集群和若⼲ Broker（RocketMQ进程）组成，它的架构原理是这样的：</p>
+<p>Broker在启动的时候去向所有的NameServer注册，并保持⻓连接，每30s发送⼀次⼼跳</p>
+<p>Producer在发送消息的时候从NameServer获取Broker服务器地址，根据负载均衡算法选择⼀台服务器 来发送消息</p>
+<p>Conusmer消费消息的时候同样从NameServer获取Broker地址，然后主动拉取消息来消费</p>
+<h2 id="RocketMQ为什么速度快"><a href="#RocketMQ为什么速度快" class="headerlink" title="RocketMQ为什么速度快"></a>RocketMQ为什么速度快</h2><p>因为使⽤了顺序存储、Page Cache和异步刷盘。我们在写⼊commitlog的时候是顺序写⼊的，这样⽐ 随机写⼊的性能就会提⾼很多，写⼊commitlog的时候并不是直接写⼊磁盘，⽽是先写⼊操作系统的 PageCache，最后由操作系统异步将缓存中的数据刷到磁盘</p>
+<h2 id="消息队列如何保证消息可靠传输"><a href="#消息队列如何保证消息可靠传输" class="headerlink" title="消息队列如何保证消息可靠传输"></a>消息队列如何保证消息可靠传输</h2><p>消息可靠传输代表了两层意思，既不能多也不能少。</p>
+<ol>
+<li>为了保证消息不多，也就是消息不能重复，也就是⽣产者不能重复⽣产消息，或者消费者不能重复 消费消息</li>
+<li>⾸先要确保消息不多发，这个不常出现，也⽐较难控制，因为如果出现了多发，很⼤的原因是⽣产 者⾃⼰的原因，如果要避免出现问题，就需要在消费端做控制</li>
+<li>要避免不重复消费，最保险的机制就是消费者实现幂等性，保证就算重复消费，也不会有问题，通 过幂等性，也能解决⽣产者重复发送消息的问题</li>
+<li>消息不能少，意思就是消息不能丢失，⽣产者发送的消息，消费者⼀定要能消费到，对于这个问 题，就要考虑两个⽅⾯</li>
+<li>⽣产者发送消息时，要确认broker确实收到并持久化了这条消息，⽐如RabbitMQ的confirm机制， Kafka的ack机制都可以保证⽣产者能正确的将消息发送给broker</li>
+<li>broker要等待消费者真正确认消费到了消息时才删除掉消息，这⾥通常就是消费端ack机制，消费 者接收到⼀条消息后，如果确认没问题了，就可以给broker发送⼀个ack，broker接收到ack后才会 删除消息</li>
+</ol>
+<h2 id="消息队列有哪些作⽤"><a href="#消息队列有哪些作⽤" class="headerlink" title="消息队列有哪些作⽤"></a>消息队列有哪些作⽤</h2><ol>
+<li>解耦：使⽤消息队列来作为两个系统之间的通讯⽅式，两个系统不需要相互依赖了</li>
+<li>异步：系统A给消息队列发送完消息之后，就可以继续做其他事情了</li>
+<li>流量削峰：如果使⽤消息队列的⽅式来调⽤某个系统，那么消息将在队列中排队，由消费者⾃⼰控 制消费速度</li>
+</ol>
+<h2 id="死信队列是什么？延时队列是什么？"><a href="#死信队列是什么？延时队列是什么？" class="headerlink" title="死信队列是什么？延时队列是什么？"></a>死信队列是什么？延时队列是什么？</h2><ol>
+<li>死信队列也是⼀个消息队列，它是⽤来存放那些没有成功消费的消息的，通常可以⽤来作为消息重 试</li>
+<li>延时队列就是⽤来存放需要在指定时间被处理的元素的队列，通常可以⽤来处理⼀些具有过期性操 作的业务，⽐如⼗分钟内未⽀付则取消订单</li>
+</ol>
+<h2 id="如何保证消息的⾼效读写？"><a href="#如何保证消息的⾼效读写？" class="headerlink" title="如何保证消息的⾼效读写？"></a>如何保证消息的⾼效读写？</h2><p>零拷⻉： kafka和RocketMQ都是通过零拷⻉技术来优化⽂件读写。</p>
+<p>传统⽂件复制⽅式： 需要对⽂件在内存中进⾏四次拷⻉。</p>
+<p>零拷⻉： 有两种⽅式， mmap和transfile，Java当中对零拷⻉进⾏了封装， Mmap⽅式通过</p>
+<p>MappedByteBuffer对象进⾏操作，⽽transfile通过FileChannel来进⾏操作。Mmap 适合⽐较⼩的⽂件，通常⽂件⼤⼩不要超过1.5G ~2G 之间。Transfile没有⽂件⼤⼩限制。RocketMQ当中使⽤Mmap⽅ 式来对他的⽂件进⾏读写。</p>
+<p>在kafka当中，他的index⽇志⽂件也是通过mmap的⽅式来读写的。在其他⽇志⽂件当中，并没有使⽤ 零拷⻉的⽅式。Kafka使⽤transfile⽅式将硬盘数据加载到⽹卡。</p>
+<h2 id="让你设计⼀个MQ，你会如何设计？"><a href="#让你设计⼀个MQ，你会如何设计？" class="headerlink" title="让你设计⼀个MQ，你会如何设计？"></a>让你设计⼀个MQ，你会如何设计？</h2><p>两个误区：</p>
+<ol>
+<li>放⻜⾃我，漫⽆边际。</li>
+<li>纠结技术细节。</li>
+</ol>
+<p>好的⽅式：</p>
+<ol>
+<li>从整体到细节，从业务场景到技术实现。</li>
+<li>以现有产品为基础。</li>
+</ol>
+<p>答题思路： MQ作⽤、项⽬⼤概的样⼦。</p>
+<ol>
+<li>实现一个单机的队列数据结构。高效、可扩展。</li>
+<li>将单机队列扩展成为分布式队列。一分布式集群管理</li>
+<li>基于Topc定制消息路由策略。-发送者路由策略，消费者与队列对应关系，消费者路由策略</li>
+<li>实现高效的网络通信。-Netty Http</li>
+<li>规划日志文件，实现文件高效读写。一零拷贝，顺序写。服务重启后，快速还原运行现场。</li>
+<li>定制高级功能，死信队列、延迟队列、事务消息等等。一贴合实际，随意发挥。</li>
+</ol>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/WechatIMG19.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Luffy</div><div class="author-info-description">100%包拿Offer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" href="/img/公众号.png"><i class="fab fa-weixin"></i><span>关注公众号</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zlf521000/JavaOfferToYou" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:luffy13453500082@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/WechatIMG35.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #1AAD19;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">面试指导，100%帮您拿Offer，不拿Offer不收费！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource"><img src="https://s1.imagehub.cc/images/2024/11/28/bab171eb86cb158d84460d755e65e039.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Autowird_vs_Resource"/></a><div class="content"><a class="title" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource">Autowird_vs_Resource</a><time datetime="2024-11-28T11:09:48.000Z" title="发表于 2024-11-28 19:09:48">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）"><img src="https://s1.imagehub.cc/images/2024/11/21/68f645d9cdba8f558c74809fe995a988.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（4）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）">创建群聊客服聊天系统（4）</a><time datetime="2024-11-21T11:32:44.000Z" title="发表于 2024-11-21 19:32:44">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）"><img src="https://s1.imagehub.cc/images/2024/11/21/8ebb58f8f0a0b154cee1325a1f390106.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（3）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）">创建群聊客服聊天系统（3）</a><time datetime="2024-11-21T11:32:39.000Z" title="发表于 2024-11-21 19:32:39">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）"><img src="https://s1.imagehub.cc/images/2024/11/17/b77975b53434e94225b9eb404f9ec652.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（2）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）">如何用TelegramBot创建群聊客服聊天系统（2）</a><time datetime="2024-11-17T14:12:25.000Z" title="发表于 2024-11-17 22:12:25">2024-11-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）"><img src="https://s1.imagehub.cc/images/2024/11/17/ae242d68efc396fe35b4f69496454885.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（1）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）">如何用TelegramBot创建群聊客服聊天系统（1）</a><time datetime="2024-11-17T14:12:17.000Z" title="发表于 2024-11-17 22:12:17">2024-11-17</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Offer/" style="font-size: 1.1em; color: #999">Offer</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/Telegram-Bot/" style="font-size: 1.3em; color: #99a1ac">Telegram_Bot</a> <a href="/tags/VPN/" style="font-size: 1.1em; color: #999">VPN</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">19</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-03T13:00:12.727Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Luffy</div></div></footer><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

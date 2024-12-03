@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java并发 | Java直达Offer</title><meta name="author" content="Luffy"><meta name="copyright" content="Luffy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java并发线程的⽣命周期？线程有⼏种状态线程通常有五种状态，创建，就绪，运⾏、阻塞和死亡状态：  新建状态(New)：新创建了一个线程对象。 就绪状态(Runnable)：线程对象创建后，其他线程调用了该对象的start方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。 运行状态(Running)：就绪状态的线程获取了CPU,执行程序代码。 阻塞状态(Blocked)：阻">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Java并发">
+<meta property="og:url" content="https://javatooffer.uzibird.cn/interview-java/Java%E5%B9%B6%E5%8F%91.html">
+<meta property="og:site_name" content="Java直达Offer">
+<meta property="og:description" content="Java并发线程的⽣命周期？线程有⼏种状态线程通常有五种状态，创建，就绪，运⾏、阻塞和死亡状态：  新建状态(New)：新创建了一个线程对象。 就绪状态(Runnable)：线程对象创建后，其他线程调用了该对象的start方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。 运行状态(Running)：就绪状态的线程获取了CPU,执行程序代码。 阻塞状态(Blocked)：阻">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg">
+<meta property="article:published_time" content="2024-11-04T13:08:38.000Z">
+<meta property="article:modified_time" content="2024-12-03T12:45:14.156Z">
+<meta property="article:author" content="Luffy">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/11/03/af1f8123d6465a98.jpg"><link rel="shortcut icon" href="/img/WechatIMG19.jpg"><link rel="canonical" href="https://javatooffer.uzibird.cn/interview-java/Java%E5%B9%B6%E5%8F%91.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java并发',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-12-03 20:45:14',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/transpancy.css"><meta name="baidu-site-verification" content="codeva-uXoRJ5heZn"><meta name="google-site-verification" content="tCePosOhrelbl19HIoBruBGDrnG9ccrO4IRZnoEgXhc"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/WechatIMG19.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/WechatIMG19.jpg" alt="Logo"><span class="site-name">Java直达Offer</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 面试总结</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/interview-java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/interview-c++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/interview-python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/interview-mysql/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/interview-redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/interview-linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/interview-rabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/interview-Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/interview-kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 编程开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Java/"><i class="fa-fw fab fa-java"></i><span> Java</span></a></li><li><a class="site-page child" href="/C++/"><i class="fa-fw fas fa-code"></i><span> C++</span></a></li><li><a class="site-page child" href="/Python/"><i class="fa-fw fab fa-python"></i><span> Python</span></a></li><li><a class="site-page child" href="/MySQL/"><i class="fa-fw fas fa-database"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/Redis/"><i class="fa-fw fas fa-memory"></i><span> Redis</span></a></li><li><a class="site-page child" href="/Linux/"><i class="fa-fw fab fa-linux"></i><span> Linux</span></a></li><li><a class="site-page child" href="/RabbitMQ/"><i class="fa-fw fas fa-server"></i><span> RabbitMQ</span></a></li><li><a class="site-page child" href="/Spring/"><i class="fa-fw fas fa-leaf"></i><span> Spring</span></a></li><li><a class="site-page child" href="/Kafka/"><i class="fa-fw fas fa-stream"></i><span> Kafka</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">Java并发</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><h1 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h1><h2 id="线程的⽣命周期？线程有⼏种状态"><a href="#线程的⽣命周期？线程有⼏种状态" class="headerlink" title="线程的⽣命周期？线程有⼏种状态"></a>线程的⽣命周期？线程有⼏种状态</h2><p>线程通常有五种状态，创建，就绪，运⾏、阻塞和死亡状态：</p>
+<ol>
+<li>新建状态(New)：新创建了一个线程对象。</li>
+<li>就绪状态(Runnable)：线程对象创建后，其他线程调用了该对象的start方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。</li>
+<li>运行状态(Running)：就绪状态的线程获取了CPU,执行程序代码。</li>
+<li>阻塞状态(Blocked)：阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。</li>
+<li>死亡状态（Dead）：线程执⾏完了或者因异常退出了run⽅法，该线程结束⽣命周期。</li>
+</ol>
+<p>阻塞的情况⼜分为三种：</p>
+<p>等待阻塞：运⾏的线程执⾏wait⽅法，该线程会释放占⽤的所有资源，JVM会把该线程放⼊“等待 池”中。进⼊这个状态后，是不能⾃动唤醒的，必须依靠其他线程调⽤notify或notifyAll⽅法才能被 唤醒，wait是object类的⽅法</p>
+<p>同步阻塞：运⾏的线程在获取对象的同步锁时，若该同步锁被别的线程占⽤，则JVM会把该线程放 ⼊“锁池”中。</p>
+<p>其他阻塞：运⾏的线程执⾏sleep或join⽅法，或者发出了I&#x2F;O请求时，JVM会把该线程置为阻塞状 态。当sleep状态超时、join等待线程终⽌或者超时、或者I&#x2F;O处理完毕时，线程重新转⼊就绪状 态。sleep是Thread类的⽅法</p>
+<h2 id="sleep-、wait-、join-、yield-之间的的区别"><a href="#sleep-、wait-、join-、yield-之间的的区别" class="headerlink" title="sleep()、wait()、join()、yield()之间的的区别"></a>sleep()、wait()、join()、yield()之间的的区别</h2><p>锁池：所有需要竞争同步锁的线程都会放在锁池当中，⽐如当前对象的锁已经被其中⼀个线程得到，则 其他线程需要在这个锁池进⾏等待，当前⾯的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线 程得到后会进⼊就绪队列进⾏等待cpu资源分配。</p>
+<p>等待池：当我们调⽤wait（）⽅法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只 有调⽤了notify（）或notifyAll()后等待池的线程才会开始去竞争锁，notify（）是随机从等待池选出⼀ 个线程放到锁池，⽽notifyAll()是将等待池的所有线程放到锁池当中</p>
+<ol>
+<li><p>sleep 是 Thread 类的静态本地⽅法，wait 则是 Object 类的本地⽅法。</p>
+</li>
+<li><p>sleep⽅法不会释放lock，但是wait会释放，⽽且会加⼊到等待队列中。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sleep就是把cpu的执⾏资格和执⾏权释放出去，不再运⾏此线程，</span><br><span class="line">当定时时间结束再取回cpu资源，参与cpu的调度，</span><br><span class="line">获取到cpu资源后就可以继续运⾏了。⽽如果sleep时该线程有锁，</span><br><span class="line">那么sleep不会释放这个锁，⽽是把锁带着进⼊了冻结状态，</span><br><span class="line">也就是说其他需要这个锁的线程根本不可能获取到这个锁。</span><br><span class="line">也就是说⽆法执⾏程序。如果在睡眠期间其他线程调⽤了这个线程的interrupt⽅法，</span><br><span class="line">那么这个线程也会抛出interruptexception异常返回，这点和wait是⼀样的。</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>sleep方法不依赖于同步器synchronized,但是wait需要依赖synchronized关键字。</p>
+</li>
+<li><p>sleep不需要被唤醒（休眠之后推出阻塞），但是wait需要（不指定时间需要被别人中断）。</p>
+</li>
+<li><p>sleep一般用于当前线程休眠，或者轮循暂停操作，wait则多用于多线程之间的通信。</p>
+</li>
+<li><p>sleep会让出CPU执行时间且强制上下文切换，而wait则不一定，wait后可能还是有机会重新竞争到锁继续执行的。</p>
+</li>
+<li><p>yield()执行后线程直接进入就绪状态，马上释放了cpu的执行权，但是依然保留了cpu的执行资格，所以有可能cpu下次进⾏线程调度还会让这个线程获取到执⾏权继续执⾏ </p>
+</li>
+<li><p>join（）执⾏后线程进⼊阻塞状态，例如在线程B中调⽤线程A的join（），那线程B会进⼊到阻塞队 列，直到线程A结束或中断线程</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">	<span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">&quot;22222222&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"> t1.start();</span><br><span class="line"> t1.join();<span class="comment">// 这⾏代码必须要等t1全部执⾏完毕，才会执⾏</span></span><br><span class="line">    System.out.println(<span class="string">&quot;1111&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">22222222</span></span><br><span class="line"><span class="number">1111</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="对线程安全的理解"><a href="#对线程安全的理解" class="headerlink" title="对线程安全的理解"></a>对线程安全的理解</h2><p>不是线程安全、应该是内存安全，堆是共享内存，可以被所有线程访问，当多个线程访问⼀个对象时， 如果不⽤进⾏额外的同步控制或其他的协调操作，调⽤这个对象的⾏为都可以获得正确的结果，我们就 说这个对象是线程安全的。</p>
+<p><strong>堆</strong>是进程和线程共有的空间，分全局堆和局部堆。全局堆就是所有没有分配的空间，局部堆就是⽤户分 配的空间。堆在操作系统对进程初始化的时候分配，运⾏过程中也可以向系统要额外的堆，但是⽤完了 要还给操作系统，要不然就是内存泄漏。在Java中，堆是Java虚拟机所管理的内存中最⼤的⼀块，是所 有线程共享的⼀块内存区域，在虚拟机启动时创建。堆所存在的内存区域的唯⼀⽬的就是存放对象实 例，⼏乎所有的对象实例以及数组都在这⾥分配内存。</p>
+<p><strong>栈</strong>是每个线程独有的，保存其运⾏状态和局部⾃动变量的。栈在线程开始的时候初始化，每个线程的栈 互相独⽴，因此，栈是线程安全的。操作系统在切换线程的时候会⾃动切换栈。栈空间不需要在⾼级语 ⾔⾥⾯显式的分配和释放。</p>
+<p>⽬前主流操作系统都是多任务的，即多个进程同时运⾏。为了保证安全，每个进程只能访问分配给⾃⼰ 的内存空间，⽽不能访问别的进程的，这是由操作系统保障的。</p>
+<p>在每个进程的内存空间中都会有⼀块特殊的公共区域，通常称为堆（内存）。进程内的所有线程都可以 访问到该区域，这就是造成问题的潜在原因。</p>
+<h2 id="Thread和Runable的区别"><a href="#Thread和Runable的区别" class="headerlink" title="Thread和Runable的区别"></a>Thread和Runable的区别</h2><p>Thread和Runnable的实质是继承关系，没有可⽐性。⽆论使⽤Runnable还是Thread，都会new  Thread，然后执⾏run⽅法。⽤法上，如果有复杂的线程操作需求，那就选择继承Thread，如果只是简 单的执⾏⼀个任务，那就实现runnable。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//会卖出多⼀倍的票</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"> 	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"> 	<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"> </span><br><span class="line"> 		<span class="keyword">new</span> <span class="title class_">MyThread</span>().start();</span><br><span class="line"> 		<span class="keyword">new</span> <span class="title class_">MyThread</span>().start();</span><br><span class="line">      &#125;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line"> 		<span class="keyword">private</span> <span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line"> 		<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line"> 			<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line"> 				System.out.println(<span class="string">&quot;Thread ticket = &quot;</span> + ticket--);</span><br><span class="line"> 				<span class="keyword">if</span>(ticket &lt; <span class="number">0</span>)&#123;</span><br><span class="line"> 					<span class="keyword">break</span>;</span><br><span class="line"> 				&#125;</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正常卖出</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        MyThread2 mt=<span class="keyword">new</span> <span class="title class_">MyThread2</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(mt).start();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(mt).start();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyThread2</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Runnable ticket = &quot;</span> + ticket--);</span><br><span class="line">                <span class="keyword">if</span>(ticket &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因是：MyThread创建了两个实例，⾃然会卖出两倍，属于⽤法错误</p>
+<h2 id="对守护线程的理解"><a href="#对守护线程的理解" class="headerlink" title="对守护线程的理解"></a>对守护线程的理解</h2><p>守护线程：为所有⾮守护线程提供服务的线程；任何⼀个守护线程都是整个JVM中所有⾮守护线程的保姆；</p>
+<p>守护线程类似于整个进程的⼀个默默⽆闻的⼩喽喽；它的⽣死⽆关重要，它却依赖整个进程⽽运⾏；哪 天其他线程结束了，没有要执⾏的了，程序就结束了，理都没理守护线程，就把它中断了；</p>
+<p>注意： 由于守护线程的终⽌是⾃身⽆法控制的，因此千万不要把IO、File等重要操作逻辑分配给它；因 为它不靠谱；</p>
+<p>守护线程的作⽤是什么？ 举例， GC垃圾回收线程：就是⼀个经典的守护线程，当我们的程序中不再有任何运⾏的Thread,程序就 不会再产⽣垃圾，垃圾回收器也就⽆事可做，所以当垃圾回收线程是JVM上仅剩的线程时，垃圾回收线 程会⾃动离开。它始终在低级别的状态中运⾏，⽤于实时监控和管理系统中的可回收资源。</p>
+<p>应⽤场景：（1）来为其它线程提供服务⽀持的情况；（2） 或者在任何情况下，程序结束时，这个线程 必须正常且⽴刻关闭，就可以作为守护线程来使⽤；反之，如果⼀个正在执⾏某个操作的线程必须要正 确地关闭掉否则就会出现不好的后果的话，那么这个线程就不能是守护线程，⽽是⽤户线程。通常都是 些关键的事务，⽐⽅说，数据库录⼊或者更新，这些操作都是不能中断的。</p>
+<p>thread.setDaemon(true)必须在thread.start()之前设置，否则会跑出⼀个IllegalThreadStateException 异常。你不能把正在运⾏的常规线程设置为守护线程。</p>
+<p>在Daemon线程中产⽣的新线程也是Daemon的。</p>
+<p>守护线程不能⽤于去访问固有资源，⽐如读写操作或者计算逻辑。因为它会在任何时候甚⾄在⼀个操作 的中间发⽣中断。</p>
+<p>Java⾃带的多线程框架，⽐如ExecutorService，会将守护线程转换为⽤户线程，所以如果要使⽤后台 线程就不能⽤Java的线程池。</p>
+<h2 id="ThreadLocal的底层原理"><a href="#ThreadLocal的底层原理" class="headerlink" title="ThreadLocal的底层原理"></a>ThreadLocal的底层原理</h2><ol>
+<li>ThreadLocal是Java中所提供的线程本地存储机制，可以利⽤该机制将数据缓存在某个线程内部， 该线程可以在任意时刻、任意⽅法中获取缓存的数据</li>
+<li>ThreadLocal底层是通过ThreadLocalMap来实现的，每个Thread对象（注意不是ThreadLocal对 象）中都存在⼀个ThreadLocalMap，Map的key为ThreadLocal对象，Map的value为需要缓存的值</li>
+<li>如果在线程池中使⽤ThreadLocal会造成内存泄漏，因为当ThreadLocal对象使⽤完之后，应该要 把设置的key，value，也就是Entry对象进⾏回收，但线程池中的线程不会回收，⽽线程对象是通过 强引⽤指向ThreadLocalMap，ThreadLocalMap也是通过强引⽤指向Entry对象，线程不被回收， Entry对象也就不会被回收，从⽽出现内存泄漏，解决办法是，在使⽤了ThreadLocal对象之后，⼿ 动调⽤ThreadLocal的remove⽅法，⼿动清楚Entry对象</li>
+<li>ThreadLocal经典的应⽤场景就是连接管理（⼀个线程持有⼀个连接，该连接对象可以在不同的⽅ 法之间进⾏传递，线程之间不共享同⼀个连接）</li>
+</ol>
+<h2 id="并发、并⾏、串⾏之间的区别"><a href="#并发、并⾏、串⾏之间的区别" class="headerlink" title="并发、并⾏、串⾏之间的区别"></a>并发、并⾏、串⾏之间的区别</h2><ol>
+<li>串⾏在时间上不可能发⽣重叠，前⼀个任务没搞定，下⼀个任务就只能等着</li>
+<li>并⾏在时间上是重叠的，两个任务在同⼀时刻互不⼲扰的同时执⾏。</li>
+<li>并发允许两个任务彼此⼲扰。统⼀时间点、只有⼀个任务运⾏，交替执⾏</li>
+</ol>
+<h2 id="并发的三⼤特性"><a href="#并发的三⼤特性" class="headerlink" title="并发的三⼤特性"></a>并发的三⼤特性</h2><p><strong>原子性</strong></p>
+<p>原⼦性是指在⼀个操作中cpu不可以在中途暂停然后再调度，即不被中断操作，要不全部执⾏完成，要 不都不执⾏。就好⽐转账，从账户A向账户B转1000元，那么必然包括2个操作：从账户A减去1000元， 往账户B加上1000元。2个操作必须全部完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">long</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">calc</span><span class="params">()</span> &#123;</span><br><span class="line"> 	count++;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>1：将 count 从主存读到⼯作内存中的副本中 </li>
+<li>2：+1的运算</li>
+<li>3：将结果写⼊⼯作内存 </li>
+<li>4：将⼯作内存的值刷回主存(什么时候刷⼊由操作系统决定，不确定的)</li>
+</ul>
+<p>那程序中原⼦性指的是最⼩的操作单元，⽐如⾃增操作，它本身其实并不是原⼦性操作，分了3步的， 包括读取变量的原始值、进⾏加1操作、写⼊⼯作内存。所以在多线程中，有可能⼀个线程还没⾃增完， 可能才执⾏到第⼆部，另⼀个线程就已经读取了值，导致结果错误。那如果我们能保证⾃增操作是⼀个 原⼦性的操作，那么就能保证其他线程读取到的⼀定是⾃增后的数据。</p>
+<p><strong>关键字：</strong>synchronized</p>
+<p><strong>可见性</strong></p>
+<p>当多个线程访问同⼀个变量时，⼀个线程修改了这个变量的值，其他线程能够⽴即看得到修改的值。</p>
+<p>若两个线程在不同的cpu，那么线程1改变了i的值还没刷新到主存，线程2⼜使⽤了i，那么这个i值肯定还 是之前的，线程1对变量的修改线程没看到这就是可⻅性问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//线程1</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">stop</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">while</span>(!stop)&#123;</span><br><span class="line"> 	doSomething();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//线程2</span></span><br><span class="line">stop = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果线程2改变了stop的值，线程1⼀定会停⽌吗？不⼀定。当线程2更改了stop变量的值之后，但是还 没来得及写⼊主存当中，线程2转去做其他事情了，那么线程1由于不知道线程2对stop变量的更改，因 此还会⼀直循环下去。</p>
+<p><strong>关键字：</strong>volatile、synchronized、final</p>
+<p><strong>有序性</strong></p>
+<p>虚拟机在进⾏代码编译时，对于那些改变顺序之后不会对最终结果造成影响的代码，虚拟机不⼀定会按 照我们写的代码的顺序来执⾏，有可能将他们重排序。实际上，对于有些代码进⾏重排序之后，虽然对 变量的值没有造成影响，但有可能会出现线程安全问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"> <span class="type">bool</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">()</span> &#123;</span><br><span class="line"> 	a = <span class="number">2</span>; 				<span class="comment">//1</span></span><br><span class="line">    flag = <span class="literal">true</span>;  		 <span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line">       </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">multiply</span><span class="params">()</span> &#123;</span><br><span class="line"> 	<span class="keyword">if</span> (flag) &#123;   		<span class="comment">//3</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ret</span> <span class="operator">=</span> a * a; <span class="comment">//4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>write⽅法⾥的1和2做了重排序，线程1先对flag赋值为true，随后执⾏到线程2，ret直接计算出结果，再 到线程1，这时候a才赋值为2,很明显迟了⼀步</p>
+<p><strong>关键字：</strong>volatile、synchronized</p>
+<p>volatile本身就包含了禁⽌指令重排序的语义，⽽synchronized关键字是由“⼀个变量在同⼀时刻只允许 ⼀条线程对其进⾏lock操作”这条规则明确的。</p>
+<p>synchronized关键字同时满⾜以上三种特性，但是volatile关键字不满⾜原⼦性。</p>
+<p>在某些情况下，volatile的同步机制的性能确实要优于锁(使⽤synchronized关键字或 java.util.concurrent包⾥⾯的锁)，因为volatile的总开销要⽐锁低。</p>
+<p>我们判断使⽤volatile还是加锁的唯⼀依据就是volatile的语义能否满⾜使⽤的场景(原⼦性)</p>
+<h2 id="Java死锁如何避免？"><a href="#Java死锁如何避免？" class="headerlink" title="Java死锁如何避免？"></a>Java死锁如何避免？</h2><p>造成死锁的⼏个原因：</p>
+<ol>
+<li>一个资源每次只能被一个线程使用</li>
+<li>一个线程在阻塞等待某个资源时，不释放已占有资源</li>
+<li>一个线程已经获得的资源，在未使用完之前，不能被强行剥夺</li>
+<li>若干线程形成头尾相接的循环等待资源关系</li>
+</ol>
+<p>这是造成死锁必须要达到的4个条件，如果要避免死锁，只需要不满⾜其中某⼀个条件即可。⽽其中前3 个条件是作为锁要符合的条件，所以要避免死锁就需要打破第4个条件，不出现循环等待锁的关系。</p>
+<p>在开发过程中：</p>
+<ol>
+<li>要注意加锁顺序，保证每个线程按同样的顺序进行加锁</li>
+<li>要注意加锁时限，可以针对所设置一个超时时间</li>
+<li>要注意死锁检查，这是一种预防机制，确保在第一时间发现死锁并进行解决</li>
+</ol>
+<h2 id="如何理解volatile关键字"><a href="#如何理解volatile关键字" class="headerlink" title="如何理解volatile关键字"></a>如何理解volatile关键字</h2><p>保证被volatile修饰的共享变量对所有线程总是可⻅的，也就是当⼀个线程修改了⼀个被volatile修饰共 享变量的值，新值总是可以被其他线程⽴即得知。  如果线程2改变了stop的值，线程1⼀定会停⽌吗？不⼀定。当线程2更改了stop变量的值之后，但是还 没来得及写⼊主存当中，线程2转去做其他事情了，那么线程1由于不知道线程2对stop变量的更改，因此还会⼀直循环下去。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程1</span></span><br><span class="line"> <span class="type">boolean</span> <span class="variable">stop</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"> <span class="keyword">while</span>(!stop)&#123;</span><br><span class="line"> doSomething();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//线程2</span></span><br><span class="line"> stop=<span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>禁⽌指令重排序优化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"> <span class="type">bool</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">()</span> &#123;</span><br><span class="line"> 	 a = <span class="number">2</span>;    			<span class="comment">//1</span></span><br><span class="line">     flag = <span class="literal">true</span>; 		<span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">multiply</span><span class="params">()</span> &#123;</span><br><span class="line"> 	<span class="keyword">if</span> (flag) &#123;   		<span class="comment">//3</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ret</span> <span class="operator">=</span> a * a; <span class="comment">//4</span></span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>write⽅法⾥的1和2做了重排序，线程1先对flag赋值为true，随后执⾏到线程2，ret直接计算出结果，再 到线程1，这时候a才赋值为2,很明显迟了⼀步。但是⽤volatile修饰之后就变得不⼀样了：</p>
+<ol>
+<li>使⽤volatile关键字会强制将修改的值⽴即写⼊主存；</li>
+<li>使⽤volatile关键字的话，当线程2进⾏修改时，会导致线程1的⼯作内存中缓存变量stop的缓存⾏⽆ 效（反映到硬件层的话，就是CPU的L1或者L2缓存中对应的缓存⾏⽆效）；</li>
+<li>由于线程1的⼯作内存中缓存变量stop的缓存⾏⽆效，所以线程1再次读取变量stop的值时会去主存 读取。</li>
+</ol>
+<p>inc++; 其实是两个步骤，先加加，然后再赋值。不是原⼦性操作，所以volatile不能保证线程安全。</p>
+<h2 id="为什么用线程池？解释下线程池参数？"><a href="#为什么用线程池？解释下线程池参数？" class="headerlink" title="为什么用线程池？解释下线程池参数？"></a>为什么用线程池？解释下线程池参数？</h2><ol>
+<li><p>降低资源消耗；提⾼线程利⽤率，降低创建和销毁线程的消耗。</p>
+</li>
+<li><p>提⾼响应速度；任务来了，直接有线程可⽤可执⾏，⽽不是先创建线程，再执⾏。</p>
+</li>
+<li><p>提⾼线程的可管理性；线程是稀缺资源，使⽤线程池可以统⼀分配调优监控。</p>
+<ul>
+<li><p>corePoolSize 代表核⼼线程数，也就是正常情况下创建⼯作的线程数，这些线程创建后并不会 消除，⽽是⼀种常驻线程</p>
+</li>
+<li><p>maxinumPoolSize 代表的是最⼤线程数，它与核⼼线程数相对应，表示最⼤允许被创建的线程数，⽐如当前任务较多，将核⼼线程数都⽤完了，还⽆法满⾜需求时，此时就会创建新的线程，但 是线程池内线程总数不会超过最⼤线程数</p>
+</li>
+<li><p>keepAliveTime  、 unit 表示超出核⼼线程数之外的线程的空闲存活时间，也就是核⼼线程不 会消除，但是超出核⼼线程数的部分线程如果空闲⼀定的时间则会被消除,我们可以通过  setKeepAliveTime 来设置空闲时间</p>
+</li>
+<li><p>workQueue ⽤来存放待执⾏的任务，假设我们现在核⼼线程都已被使⽤，还有任务进来则全部 放⼊队列，直到整个队列被放满但任务还再持续进⼊则会开始创建新的线程 </p>
+</li>
+<li><p>ThreadFactory 实际上是⼀个线程⼯⼚，⽤来⽣产线程执⾏任务。我们可以选择使⽤默认的创 建⼯⼚，产⽣的线程都在同⼀个组内，拥有相同的优先级，且都不是守护线程。当然我们也可以选 择⾃定义线程⼯⼚，⼀般我们会根据业务来制定不同的线程⼯⼚</p>
+</li>
+<li><p>Handler 任务拒绝策略，有两种情况，第⼀种是当我们调⽤ shutdown 等⽅法关闭线程池后， 这时候即使线程池内部还有没执⾏完的任务正在执⾏，但是由于线程池已经关闭，我们再继续想线 程池提交任务就会遭到拒绝。另⼀种情况就是当达到最⼤线程数，线程池已经没有能⼒继续处理新 提交的任务时，这是也就拒绝</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="线程池的底层⼯作原理"><a href="#线程池的底层⼯作原理" class="headerlink" title="线程池的底层⼯作原理"></a>线程池的底层⼯作原理</h2><ol>
+<li>线程池内部是通过队列+线程实现的，当我们利⽤线程池执⾏任务时：</li>
+<li>如果此时线程池中的线程数量⼩于corePoolSize，即使线程池中的线程都处于空闲状态，也要创建 新的线程来处理被添加的任务。</li>
+<li>如果此时线程池中的线程数量等于corePoolSize，但是缓冲队列workQueue未满，那么任务被放⼊ 缓冲队列。</li>
+<li>如果此时线程池中的线程数量⼤于等于corePoolSize，缓冲队列workQueue满，并且线程池中的数 量⼩于maximumPoolSize，建新的线程来处理被添加的任务。</li>
+<li>如果此时线程池中的线程数量⼤于corePoolSize，缓冲队列workQueue满，并且线程池中的数量等 于maximumPoolSize，那么通过 handler所指定的策略来处理此任务。</li>
+<li>当线程池中的线程数量⼤于 corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被 终⽌。这样，线程池可以动态的调整池中的线程数</li>
+</ol>
+<h2 id="线程池中阻塞队列的作⽤？为什么是先添加列队⽽不是先创建最-⼤线程？"><a href="#线程池中阻塞队列的作⽤？为什么是先添加列队⽽不是先创建最-⼤线程？" class="headerlink" title="线程池中阻塞队列的作⽤？为什么是先添加列队⽽不是先创建最 ⼤线程？"></a>线程池中阻塞队列的作⽤？为什么是先添加列队⽽不是先创建最 ⼤线程？</h2><ol>
+<li><p>⼀般的队列只能保证作为⼀个有限⻓度的缓冲区，如果超出了缓冲⻓度，就⽆法保留当前的任务了， 阻塞队列通过阻塞可以保留住当前想要继续⼊队的任务。</p>
+<p>阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程，使得线程进⼊wait状态，释放cpu资 源。</p>
+<p>阻塞队列⾃带阻塞和唤醒的功能，不需要额外处理，⽆任务执⾏时,线程池利⽤阻塞队列的take⽅法挂 起，从⽽维持核⼼线程的存活、不⾄于⼀直占⽤cpu资源</p>
+</li>
+<li><p>在创建新线程的时候，是要获取全局锁的，这个时候其它的就得阻塞，影响了整体效率。</p>
+</li>
+</ol>
+<p>​			 就好⽐⼀个企业⾥⾯有10个（core）正式⼯的名额，最多招10个正式⼯，要是任务超过正式⼯⼈数 （task &gt; core）的情况下，⼯⼚领导（线程池）不是⾸		先扩招⼯⼈，还是这10⼈，但是任务可以稍微积 压⼀下，即先放到队列去（代价低）。10个正式⼯慢慢⼲，迟早会⼲完的，要是任务还在继续增加，超 过正		式⼯的加班忍耐极限了（队列满了），就的招外包帮忙了（注意是临时⼯）要是正式⼯加上外包还 是不能完成任务，那新来的任务就会被领导拒绝了（线程		池的拒绝策略）。</p>
+<h2 id="线程池中线程复⽤原理"><a href="#线程池中线程复⽤原理" class="headerlink" title="线程池中线程复⽤原理"></a>线程池中线程复⽤原理</h2><p>线程池将线程和任务进⾏解耦，线程是线程，任务是任务，摆脱了之前通过 Thread 创建线程时的⼀个 线程必须对应⼀个任务的限制。</p>
+<p>在线程池中，同⼀个线程可以从阻塞队列中不断获取新任务来执⾏，其核⼼原理在于线程池对 Thread  进⾏了封装，并不是每次执⾏任务都会调⽤ Thread.start() 来创建新线程，⽽是让每个线程去执⾏⼀ 个“循环任务”，在这个“循环任务”中不停检查是否有任务需要被执⾏，如果有则直接执⾏，也就是调⽤ 任务中的 run ⽅法，将 run ⽅法当成⼀个普通的⽅法执⾏，通过这种⽅式只使⽤固定的线程就将所有任 务的 run ⽅法串联起来。</p>
+<h2 id="ReentrantLock中的公平锁和⾮公平锁的底层实现"><a href="#ReentrantLock中的公平锁和⾮公平锁的底层实现" class="headerlink" title="ReentrantLock中的公平锁和⾮公平锁的底层实现"></a>ReentrantLock中的公平锁和⾮公平锁的底层实现</h2><p>⾸先不管是公平锁和⾮公平锁，它们的底层实现都会使⽤AQS来进⾏排队，它们的区别在于：线程在使 ⽤lock()⽅法加锁时，如果是公平锁，会先检查AQS队列中是否存在线程在排队，如果有线程在排队， 则当前线程也进⾏排队，如果是⾮公平锁，则不会去检查是否有线程在排队，⽽是直接竞争锁。</p>
+<p>不管是公平锁还是⾮公平锁，⼀旦没竞争到锁，都会进⾏排队，当锁释放时，都是唤醒排在最前⾯的线 程，所以⾮公平锁只是体现在了线程加锁阶段，⽽没有体现在线程被唤醒阶段。</p>
+<p>另外，ReentrantLock是可重⼊锁，不管是公平锁还是⾮公平锁都是可重⼊的。</p>
+<h2 id="ReentrantLock中tryLock-和lock-⽅法的区别"><a href="#ReentrantLock中tryLock-和lock-⽅法的区别" class="headerlink" title="ReentrantLock中tryLock()和lock()⽅法的区别"></a>ReentrantLock中tryLock()和lock()⽅法的区别</h2><ol>
+<li>tryLock()表示尝试加锁，可能加到，也可能加不到，该⽅法不会阻塞线程，如果加到锁则返回 true，没有加到则返回false</li>
+<li>lock()表示阻塞加锁，线程会阻塞直到加到锁，⽅法也没有返回值</li>
+</ol>
+<h2 id="CountDownLatch和Semaphore的区别和底层原理"><a href="#CountDownLatch和Semaphore的区别和底层原理" class="headerlink" title="CountDownLatch和Semaphore的区别和底层原理"></a>CountDownLatch和Semaphore的区别和底层原理</h2><p>CountDownLatch表示计数器，可以给CountDownLatch设置⼀个数字，⼀个线程调⽤ CountDownLatch的await()将会阻塞，其他线程可以调⽤CountDownLatch的countDown()⽅法来对 CountDownLatch中的数字减⼀，当数字被减成0后，所有await的线程都将被唤醒。</p>
+<p>对应的底层原理就是，调⽤await()⽅法的线程会利⽤AQS排队，⼀旦数字被减为0，则会将AQS中 排队的线程依次唤醒。</p>
+<p>Semaphore表示信号量，可以设置许可的个数，表示同时允许最多多少个线程使⽤该信号量，通 过acquire()来获取许可，如果没有许可可⽤则线程阻塞，并通过AQS来排队，可以通过release() ⽅法来释放许可，当某个线程释放了某个许可后，会从AQS中正在排队的第⼀个线程开始依次唤 醒，直到没有空闲许可。</p>
+<h2 id="Sychronized的偏向锁、轻量级锁、重量级锁"><a href="#Sychronized的偏向锁、轻量级锁、重量级锁" class="headerlink" title="Sychronized的偏向锁、轻量级锁、重量级锁"></a>Sychronized的偏向锁、轻量级锁、重量级锁</h2><ol>
+<li>偏向锁：在锁对象的对象头中记录⼀下当前获取到该锁的线程ID，该线程下次如果⼜来获取该锁就 可以直接获取到了</li>
+<li>轻量级锁：由偏向锁升级⽽来，当⼀个线程获取到锁后，此时这把锁是偏向锁，此时如果有第⼆个 线程来竞争锁，偏向锁就会升级为轻量级锁，之所以叫轻量级锁，是为了和重量级锁区分开来，轻 量级锁底层是通过⾃旋来实现的，并不会阻塞线程</li>
+<li>如果⾃旋次数过多仍然没有获取到锁，则会升级为重量级锁，重量级锁会导致线程阻塞</li>
+<li>⾃旋锁：⾃旋锁就是线程在获取锁的过程中，不会去阻塞线程，也就⽆所谓唤醒线程，阻塞和唤醒 这两个步骤都是需要操作系统去进⾏的，⽐较消耗时间，⾃旋锁是线程通过CAS获取预期的⼀个标 记，如果没有获取到，则继续循环获取，如果获取到了则表示获取到了锁，这个过程线程⼀直在运 ⾏中，相对⽽⾔没有使⽤太多的操作系统资源，⽐较轻量。</li>
+</ol>
+<h2 id="Sychronized和ReentrantLock的区别"><a href="#Sychronized和ReentrantLock的区别" class="headerlink" title="Sychronized和ReentrantLock的区别"></a>Sychronized和ReentrantLock的区别</h2><ol>
+<li>sychronized是⼀个关键字，ReentrantLock是⼀个类</li>
+<li>sychronized会⾃动的加锁与释放锁，ReentrantLock需要程序员⼿动加锁与释放锁</li>
+<li>sychronized的底层是JVM层⾯的锁，ReentrantLock是API层⾯的锁</li>
+<li>sychronized是⾮公平锁，ReentrantLock可以选择公平锁或⾮公平锁</li>
+<li>sychronized锁的是对象，锁信息保存在对象头中，ReentrantLock通过代码中int类型的state标识 来标识锁的状态</li>
+<li>sychronized底层有⼀个锁升级的过程</li>
+</ol>
+<h2 id="谈谈你对AQS的理解，AQS如何实现可重⼊锁？"><a href="#谈谈你对AQS的理解，AQS如何实现可重⼊锁？" class="headerlink" title="谈谈你对AQS的理解，AQS如何实现可重⼊锁？"></a>谈谈你对AQS的理解，AQS如何实现可重⼊锁？</h2><ol>
+<li>AQS是⼀个JAVA线程同步的框架。是JDK中很多锁⼯具的核⼼实现框架。</li>
+<li>在AQS中，维护了⼀个信号量state和⼀个线程组成的双向链表队列。其中，这个线程队列，就是⽤ 来给线程排队的，⽽state就像是⼀个红绿灯，⽤来控制线程排队或者放⾏的。 在不同的场景下， 有不⽤的意义。</li>
+<li>在可重⼊锁这个场景下，state就⽤来表示加锁的次数。0标识⽆锁，每加⼀次锁，state就加1。释 放锁state就减1。</li>
+</ol>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/WechatIMG19.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Luffy</div><div class="author-info-description">100%包拿Offer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" href="/img/公众号.png"><i class="fab fa-weixin"></i><span>关注公众号</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zlf521000/JavaOfferToYou" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:luffy13453500082@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/WechatIMG35.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #1AAD19;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">面试指导，100%帮您拿Offer，不拿Offer不收费！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource"><img src="https://s1.imagehub.cc/images/2024/11/28/bab171eb86cb158d84460d755e65e039.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Autowird_vs_Resource"/></a><div class="content"><a class="title" href="/2024/11/28/Autowird-vs-Resource/" title="Autowird_vs_Resource">Autowird_vs_Resource</a><time datetime="2024-11-28T11:09:48.000Z" title="发表于 2024-11-28 19:09:48">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）"><img src="https://s1.imagehub.cc/images/2024/11/21/68f645d9cdba8f558c74809fe995a988.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（4）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%884%EF%BC%89/" title="创建群聊客服聊天系统（4）">创建群聊客服聊天系统（4）</a><time datetime="2024-11-21T11:32:44.000Z" title="发表于 2024-11-21 19:32:44">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）"><img src="https://s1.imagehub.cc/images/2024/11/21/8ebb58f8f0a0b154cee1325a1f390106.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创建群聊客服聊天系统（3）"/></a><div class="content"><a class="title" href="/2024/11/21/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%883%EF%BC%89/" title="创建群聊客服聊天系统（3）">创建群聊客服聊天系统（3）</a><time datetime="2024-11-21T11:32:39.000Z" title="发表于 2024-11-21 19:32:39">2024-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）"><img src="https://s1.imagehub.cc/images/2024/11/17/b77975b53434e94225b9eb404f9ec652.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（2）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（2）">如何用TelegramBot创建群聊客服聊天系统（2）</a><time datetime="2024-11-17T14:12:25.000Z" title="发表于 2024-11-17 22:12:25">2024-11-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）"><img src="https://s1.imagehub.cc/images/2024/11/17/ae242d68efc396fe35b4f69496454885.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何用TelegramBot创建群聊客服聊天系统（1）"/></a><div class="content"><a class="title" href="/2024/11/17/%E5%88%9B%E5%BB%BA%E7%BE%A4%E8%81%8A%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" title="如何用TelegramBot创建群聊客服聊天系统（1）">如何用TelegramBot创建群聊客服聊天系统（1）</a><time datetime="2024-11-17T14:12:17.000Z" title="发表于 2024-11-17 22:12:17">2024-11-17</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Offer/" style="font-size: 1.1em; color: #999">Offer</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/Telegram-Bot/" style="font-size: 1.3em; color: #99a1ac">Telegram_Bot</a> <a href="/tags/VPN/" style="font-size: 1.1em; color: #999">VPN</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">19</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-03T13:00:12.727Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Luffy</div></div></footer><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

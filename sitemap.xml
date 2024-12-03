@@ -2,6 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/index.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/Spring.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/mysql.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/Redis.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/Java%E5%9F%BA%E7%A1%80.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/Java%E5%B9%B6%E5%8F%91.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/%E7%BD%91%E7%BB%9C.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javatooffer.uzibird.cn/interview-java/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1.html</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://javatooffer.uzibird.cn/2024/11/28/Autowird-vs-Resource/</loc>
     
     <lastmod>2024-11-28</lastmod>
@@ -75,15 +156,6 @@
   
   <url>
     <loc>https://javatooffer.uzibird.cn/Java/Java%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB.html</loc>
-    
-    <lastmod>2024-11-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javatooffer.uzibird.cn/interview-java/index.html</loc>
     
     <lastmod>2024-11-23</lastmod>
     
@@ -391,7 +463,7 @@
 
   <url>
     <loc>https://javatooffer.uzibird.cn/</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -399,28 +471,28 @@
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Java/</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Offer/</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/Telegram-Bot/</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://javatooffer.uzibird.cn/tags/VPN/</loc>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
