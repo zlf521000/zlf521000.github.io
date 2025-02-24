@@ -10,7 +10,33 @@ allow_translation: false
 
 ## 微信联系：
 [![添加微信](https://s1.imagehub.cc/images/2024/11/14/8d89a045c06bcd516471d082e65b7557.th.jpg)](https://www.imagehub.cc/image/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87%E7%BC%96%E8%BE%91-20241114203416.CnGGD6)
+# 2025年
+## 2月
+### 5日
+**开工** 
+  <img src="/img/25-开工.jpg" width="256" height="500"/>
+
+## 11日
+**西安-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">13k</span>
+  <img src="/img/25-02-11-西安-13k.jpg" width="256" height="500"/>
+
 # 2024年
+
+## 12月
+### 12日
+**浙江-某大厂-** 25应届转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">23k</span>
+  <img src="/img/24-12-12-25届-23k.jpg" width="500" height="500"/>
+
+### 19日
+**武汉-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">16.5k</span>
+  <img src="/img/24-12-19-武汉-16.5k.jpg" width="500" height="500"/>
+
+### 30日
+**上海-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">11k</span>
+  <img src="/img/24-12-30-上海-11k-1.jpg" width="500" height="500"/>
+  <img src="/img/24-12-30-上海-11k-2.jpg" width="256" height="500"/>
+
+
 ## 11月
 ### 01日
 **杭州-** 转正薪资税前 <span style="color:red; font-size:16px; font-weight:bold;">21k</span>
